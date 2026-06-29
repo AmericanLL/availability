@@ -24,99 +24,70 @@ function dateHeader(label) {
   return `<span class="date-month">${month}</span><span class="date-day">${day}</span>`;
 }
 
-function renderDistrictCalendar(data) {
-  const header = data.dates.map((date, i) => {
-    const dow = data.days_of_week ? data.days_of_week[i] : "";
-    return `<th><span class="dow">${dow}</span>${dateHeader(date)}</th>`;
-  }).join("");
-
-  const body = data.district_calendar.map(row => {
-    const id = slugify(row.facility);
-
-    const cells = row.available_counts.map(count => `
-      <td class="status ${countClass(count)}">${count}</td>
-    `).join("");
-
-    return `
-      <tr>
-        <td><a href="#${id}" onclick="openFacility('${id}')">${row.facility}</a></td>
-        ${cells}
-      </tr>
-    `;
-  }).join("");
-
-  return `
-    <h2>District 60-Day Availability</h2>
-    <p class="helper">Numbers show available sites by facility and date.</p>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Facility</th>
-            ${header}
-          </tr>
-        </thead>
-        <tbody>${body}</tbody>
-      </table>
-    </div>
-  `;
-}
-
 function siteStatusLabel(status) {
   if (status === "available") return "Open";
   if (status === "full") return "Full";
   return status;
 }
 
-function renderFacilityCalendar(facility, dates, daysOfWeek) {
-  const id = slugify(facility.name);
-
-  const header = dates.map((date, i) => {
-    const dow = daysOfWeek ? daysOfWeek[i] : "";
+function renderHeader(data) {
+  return data.dates.map((date, i) => {
+    const dow = data.days_of_week ? data.days_of_week[i] : "";
     return `<th><span class="dow">${dow}</span>${dateHeader(date)}</th>`;
   }).join("");
+}
 
-  const body = facility.sites.map(row => {
-    const cells = row.days.map(status => `
-      <td class="status ${status}">${siteStatusLabel(status)}</td>
+function renderMasterTable(data) {
+  const header = renderHeader(data);
+
+  const districtByFacility = new Map(
+    data.district_calendar.map(row => [row.facility, row])
+  );
+
+  const rows = data.facilities.map(facility => {
+    const id = slugify(facility.name);
+    const districtRow = districtByFacility.get(facility.name);
+    const counts = districtRow ? districtRow.available_counts : [];
+
+    const facilityCells = counts.map(count => `
+      <td class="status ${countClass(count)}">${count}</td>
     `).join("");
 
+    const siteRows = facility.sites.map(site => {
+      const siteCells = site.days.map(status => `
+        <td class="status ${status}">${siteStatusLabel(status)}</td>
+      `).join("");
+
+      return `
+        <tr class="site-row site-for-${id}" data-parent="${id}" style="display: none;">
+          <td class="site-name">
+            <strong>${site.site}</strong>
+            ${site.loop ? `<span class="site-meta">${site.loop}</span>` : ""}
+            ${site.site_type ? `<span class="site-meta">${site.site_type}</span>` : ""}
+          </td>
+          ${siteCells}
+        </tr>
+      `;
+    }).join("");
+
     return `
-      <tr>
-        <td>
-          <strong>${row.site}</strong>
-          ${row.loop ? `<span class="site-meta">${row.loop}</span>` : ""}
-          ${row.site_type ? `<span class="site-meta">${row.site_type}</span>` : ""}
+      <tr class="facility-row" id="${id}" data-facility="${id}" onclick="toggleFacility('${id}')">
+        <td class="facility-name">
+          <span class="toggle-icon" id="icon-${id}">▶</span>
+          <strong>${facility.name}</strong>
+          <span class="site-count">(${facility.sites.length} sites)</span>
         </td>
-        ${cells}
+        ${facilityCells}
       </tr>
+      ${siteRows}
     `;
   }).join("");
 
   return `
-    <details id="${id}" class="facility-detail">
-      <summary>${facility.name} <span class="site-count">(${facility.sites.length} sites)</span></summary>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Site</th>
-              ${header}
-            </tr>
-          </thead>
-          <tbody>${body}</tbody>
-        </table>
-      </div>
-    </details>
-  `;
-}
-
-function renderFacilities(data) {
-  return `
     <div class="facility-header-row">
       <div>
-        <h2>Facility Detail</h2>
-        <p class="helper">Open one or more facilities to compare site-by-site availability.</p>
+        <h2>District 60-Day Availability</h2>
+        <p class="helper">Collapsed rows show available site counts by facility. Expand a facility to see site-by-site availability.</p>
       </div>
       <div class="facility-actions">
         <button type="button" onclick="expandAllFacilities()">Expand All</button>
@@ -124,29 +95,52 @@ function renderFacilities(data) {
       </div>
     </div>
 
-    ${data.facilities
-      .map(facility => renderFacilityCalendar(facility, data.dates, data.days_of_week))
-      .join("")}
+    <div class="table-wrap master-table-wrap">
+      <table class="master-table">
+        <thead>
+          <tr>
+            <th>Facility / Site</th>
+            ${header}
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    </div>
   `;
 }
 
+function toggleFacility(id) {
+  const rows = document.querySelectorAll(`.site-for-${id}`);
+  const icon = document.getElementById(`icon-${id}`);
+  const anyHidden = Array.from(rows).some(row => row.style.display === "none");
+
+  rows.forEach(row => {
+    row.style.display = anyHidden ? "table-row" : "none";
+  });
+
+  if (icon) {
+    icon.textContent = anyHidden ? "▼" : "▶";
+  }
+}
+
 function expandAllFacilities() {
-  document.querySelectorAll(".facility-detail").forEach(el => {
-    el.open = true;
+  document.querySelectorAll(".site-row").forEach(row => {
+    row.style.display = "table-row";
+  });
+  document.querySelectorAll(".toggle-icon").forEach(icon => {
+    icon.textContent = "▼";
   });
 }
 
 function collapseAllFacilities() {
-  document.querySelectorAll(".facility-detail").forEach(el => {
-    el.open = false;
+  document.querySelectorAll(".site-row").forEach(row => {
+    row.style.display = "none";
   });
-}
-
-function openFacility(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.open = true;
-  }
+  document.querySelectorAll(".toggle-icon").forEach(icon => {
+    icon.textContent = "▶";
+  });
 }
 
 fetch(DATA_URL)
@@ -158,8 +152,7 @@ fetch(DATA_URL)
     document.getElementById("availability-app").innerHTML = `
       <h1>${data.district_name}</h1>
       <p class="updated">Last updated: ${data.last_updated}</p>
-      ${renderDistrictCalendar(data)}
-      ${renderFacilities(data)}
+      ${renderMasterTable(data)}
     `;
   })
   .catch(error => {
