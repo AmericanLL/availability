@@ -18,6 +18,12 @@ const DATA_URL = `data/districts/${district}.json`;
 
 let activeDateIndex = null;
 let showAvailableOnly = false;
+let filterElectric = false;
+let filterTentOnly = false;
+let filterRvTrailer = false;
+let filterAccessible = false;
+let filterPartySize = 0;
+let filterMinLength = 0;
 
 function slugify(value) {
   return String(value)
@@ -117,6 +123,49 @@ function siteHasOnlineAvailability(site) {
   return site.days.some((status) => status && status.group === "available");
 }
 
+function siteMatchesMetadataFilters(site) {
+  const metadata = site.metadata || {};
+
+  if (filterElectric && metadata.is_electric !== true) {
+    return false;
+  }
+
+  if (filterTentOnly && metadata.is_tent_only !== true) {
+    return false;
+  }
+
+  if (filterRvTrailer) {
+    const allowsRv = metadata.allows_rv === true;
+    const allowsTrailer = metadata.allows_trailer === true;
+
+    if (!allowsRv && !allowsTrailer) {
+      return false;
+    }
+  }
+
+  if (filterAccessible && metadata.accessible !== true) {
+    return false;
+  }
+
+  if (filterPartySize > 0) {
+    const people = Number(metadata.max_people || 0);
+
+    if (!people || people < filterPartySize) {
+      return false;
+    }
+  }
+
+  if (filterMinLength > 0) {
+    const length = Number(metadata.max_vehicle_length || metadata.max_equipment_length || 0);
+
+    if (!length || length < filterMinLength) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function renderHeader(data) {
   return data.dates
     .map((date, index) => {
@@ -156,8 +205,51 @@ function renderMasterTable(data) {
         <div class="facility-actions">
           <label class="filter-toggle">
             <input type="checkbox" onchange="setAvailableOnlyFilter(this.checked)">
-            Show only sites with online availability
+            Online availability
           </label>
+
+          <label class="filter-toggle">
+            <input type="checkbox" onchange="setElectricFilter(this.checked)">
+            Electric
+          </label>
+
+          <select class="filter-select" onchange="setPartySizeFilter(this.value)">
+            <option value="0">Any party size</option>
+            <option value="2">2+ people</option>
+            <option value="4">4+ people</option>
+            <option value="6">6+ people</option>
+            <option value="8">8+ people</option>
+            <option value="10">10+ people</option>
+            <option value="20">20+ people</option>
+            <option value="30">30+ people</option>
+          </select>
+
+          <label class="filter-toggle">
+            <input type="checkbox" onchange="setTentOnlyFilter(this.checked)">
+            Tent only
+          </label>
+
+          <label class="filter-toggle">
+            <input type="checkbox" onchange="setRvTrailerFilter(this.checked)">
+            RV / Trailer
+          </label>
+
+          <label class="filter-toggle">
+            <input type="checkbox" onchange="setAccessibleFilter(this.checked)">
+            Accessible
+          </label>
+
+          <select class="filter-select" onchange="setLengthFilter(this.value)">
+            <option value="0">Any vehicle length</option>
+            <option value="20">20+ ft</option>
+            <option value="25">25+ ft</option>
+            <option value="30">30+ ft</option>
+            <option value="35">35+ ft</option>
+            <option value="40">40+ ft</option>
+            <option value="45">45+ ft</option>
+            <option value="50">50+ ft</option>
+          </select>
+
           <button onclick="expandAllFacilities()">Expand All</button>
           <button onclick="collapseAllFacilities()">Collapse All</button>
           <button onclick="clearDateHighlight()">Clear Highlight</button>
@@ -214,6 +306,8 @@ function renderMasterTable(data) {
         <tr
           class="site-row ${facilityKey}"
           data-facility-key="${facilityKey}"
+          data-facility-index="${facilityIndex}"
+          data-site-index="${facility.sites.indexOf(site)}"
           data-expanded="false"
           data-has-availability="${hasAvailability}"
           style="display: none;"
@@ -301,10 +395,48 @@ function setAvailableOnlyFilter(value) {
   applyDateHighlight();
 }
 
+function setElectricFilter(value) {
+  filterElectric = value;
+  applySiteFilters();
+  applyDateHighlight();
+}
+
+function setPartySizeFilter(value) {
+  filterPartySize = Number(value || 0);
+  applySiteFilters();
+  applyDateHighlight();
+}
+
+function setTentOnlyFilter(value) {
+  filterTentOnly = value;
+  applySiteFilters();
+  applyDateHighlight();
+}
+
+function setRvTrailerFilter(value) {
+  filterRvTrailer = value;
+  applySiteFilters();
+  applyDateHighlight();
+}
+
+function setAccessibleFilter(value) {
+  filterAccessible = value;
+  applySiteFilters();
+  applyDateHighlight();
+}
+
+function setLengthFilter(value) {
+  filterMinLength = Number(value || 0);
+  applySiteFilters();
+  applyDateHighlight();
+}
+
 function applySiteFilters() {
   document.querySelectorAll(".site-row").forEach((row) => {
     const isExpanded = row.dataset.expanded === "true";
     const hasAvailability = row.dataset.hasAvailability === "true";
+    const siteIndex = Number(row.dataset.siteIndex);
+    const facilityIndex = Number(row.dataset.facilityIndex);
 
     if (!isExpanded) {
       row.style.display = "none";
@@ -312,6 +444,13 @@ function applySiteFilters() {
     }
 
     if (showAvailableOnly && !hasAvailability) {
+      row.style.display = "none";
+      return;
+    }
+
+    const site = window.availabilityData.facilities[facilityIndex].sites[siteIndex];
+
+    if (!siteMatchesMetadataFilters(site)) {
       row.style.display = "none";
       return;
     }
@@ -355,6 +494,7 @@ fetch(DATA_URL)
     return response.json();
   })
   .then((data) => {
+    window.availabilityData = data;
     app.innerHTML = `
       <h1>${data.district_name}</h1>
       <p class="updated">Last updated: ${data.last_updated}</p>
