@@ -17,6 +17,7 @@ const district = params.get("district") || "or-siuslaw-central-coast";
 const DATA_URL = `data/districts/${district}.json`;
 
 let activeDateIndex = null;
+let showAvailableOnly = false;
 
 function slugify(value) {
   return String(value)
@@ -112,6 +113,10 @@ function statusLabel(status) {
   return status.code || "";
 }
 
+function siteHasOnlineAvailability(site) {
+  return site.days.some((status) => status && status.group === "available");
+}
+
 function renderHeader(data) {
   return data.dates
     .map((date, index) => {
@@ -149,6 +154,10 @@ function renderMasterTable(data) {
       <div class="facility-header-row">
         <h2>District 60-Day Availability</h2>
         <div class="facility-actions">
+          <label class="filter-toggle">
+            <input type="checkbox" onchange="setAvailableOnlyFilter(this.checked)">
+            Show only sites with online availability
+          </label>
           <button onclick="expandAllFacilities()">Expand All</button>
           <button onclick="collapseAllFacilities()">Collapse All</button>
           <button onclick="clearDateHighlight()">Clear Highlight</button>
@@ -199,8 +208,16 @@ function renderMasterTable(data) {
     html += `</tr>`;
 
     facility.sites.forEach((site) => {
+      const hasAvailability = siteHasOnlineAvailability(site);
+
       html += `
-        <tr class="site-row ${facilityKey}" style="display: none;">
+        <tr
+          class="site-row ${facilityKey}"
+          data-facility-key="${facilityKey}"
+          data-expanded="false"
+          data-has-availability="${hasAvailability}"
+          style="display: none;"
+        >
           <td class="site-name">
             <div><strong>Site ${site.site}</strong></div>
             <div class="site-meta">
@@ -237,33 +254,37 @@ function toggleFacility(facilityKey) {
 
   if (!rows.length) return;
 
-  const isHidden = rows[0].style.display === "none";
+  const isExpanded = rows[0].dataset.expanded === "true";
+  const nextExpanded = !isExpanded;
 
   rows.forEach((row) => {
-    row.style.display = isHidden ? "table-row" : "none";
+    row.dataset.expanded = nextExpanded ? "true" : "false";
   });
 
   if (icon) {
-    icon.textContent = isHidden ? "▼" : "▶";
+    icon.textContent = nextExpanded ? "▼" : "▶";
   }
 
+  applySiteFilters();
   applyDateHighlight();
 }
 
 function expandAllFacilities() {
   document.querySelectorAll(".site-row").forEach((row) => {
-    row.style.display = "table-row";
+    row.dataset.expanded = "true";
   });
 
   document.querySelectorAll(".toggle-icon").forEach((icon) => {
     icon.textContent = "▼";
   });
 
+  applySiteFilters();
   applyDateHighlight();
 }
 
 function collapseAllFacilities() {
   document.querySelectorAll(".site-row").forEach((row) => {
+    row.dataset.expanded = "false";
     row.style.display = "none";
   });
 
@@ -272,6 +293,31 @@ function collapseAllFacilities() {
   });
 
   applyDateHighlight();
+}
+
+function setAvailableOnlyFilter(value) {
+  showAvailableOnly = value;
+  applySiteFilters();
+  applyDateHighlight();
+}
+
+function applySiteFilters() {
+  document.querySelectorAll(".site-row").forEach((row) => {
+    const isExpanded = row.dataset.expanded === "true";
+    const hasAvailability = row.dataset.hasAvailability === "true";
+
+    if (!isExpanded) {
+      row.style.display = "none";
+      return;
+    }
+
+    if (showAvailableOnly && !hasAvailability) {
+      row.style.display = "none";
+      return;
+    }
+
+    row.style.display = "table-row";
+  });
 }
 
 function clearDateHighlight() {
