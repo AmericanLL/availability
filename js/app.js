@@ -1,198 +1,324 @@
+
+window.addEventListener("error", function(event) {
+  const app = document.getElementById("availability-app");
+  if (app) {
+    app.innerHTML = `
+      <h1>JavaScript error</h1>
+      <p>${event.message}</p>
+      <p class="updated">${event.filename}:${event.lineno}:${event.colno}</p>
+    `;
+  }
+});
+
+const app = document.getElementById("availability-app");
+
 const params = new URLSearchParams(window.location.search);
 const district = params.get("district") || "or-siuslaw-central-coast";
 const DATA_URL = `data/districts/${district}.json`;
 
 let activeDateIndex = null;
 
-function slugify(text) {
-  return String(text).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
-
-function countClass(value) {
-  const n = Number(value);
-  if (n <= 0) return "full";
-  if (n <= 3) return "limited";
-  if (n <= 8) return "some";
-  return "available";
+function slugify(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 function dateParts(label) {
   const parts = String(label).split(" ");
-  return { month: parts[0] || "", day: parts[1] || "" };
+  return {
+    month: parts[0] || "",
+    day: parts[1] || "",
+  };
 }
 
-function isWeekend(dow) {
-  return dow === "Sat" || dow === "Sun";
+function isWeekend(day) {
+  return day === "Sat" || day === "Sun";
 }
 
-function isNewMonth(data, i) {
-  if (i === 0) return false;
-  return dateParts(data.dates[i]).month !== dateParts(data.dates[i - 1]).month;
+function isNewMonth(dates, index) {
+  if (index === 0) return false;
+  const current = dateParts(dates[index]).month;
+  const previous = dateParts(dates[index - 1]).month;
+  return current !== previous;
 }
 
-function thClasses(data, i) {
-  const dow = data.days_of_week ? data.days_of_week[i] : "";
-  return [
-    isWeekend(dow) ? "weekend-col" : "",
-    isNewMonth(data, i) ? "new-month" : "",
-    activeDateIndex === i ? "active-date" : ""
-  ].join(" ");
+function thClasses(data, index) {
+  const classes = [];
+
+  if (isWeekend(data.days_of_week[index])) {
+    classes.push("weekend-col");
+  }
+
+  if (isNewMonth(data.dates, index)) {
+    classes.push("new-month");
+  }
+
+  if (activeDateIndex === index) {
+    classes.push("active-date");
+  }
+
+  return classes.join(" ");
 }
 
-function tdClasses(data, i, baseClass = "") {
-  const dow = data.days_of_week ? data.days_of_week[i] : "";
-  return [
-    baseClass,
-    isWeekend(dow) ? "weekend-col" : "",
-    isNewMonth(data, i) ? "new-month" : "",
-    activeDateIndex === i ? "active-date" : ""
-  ].join(" ");
+function tdClasses(data, index, extraClass = "") {
+  const classes = [];
+
+  if (extraClass) {
+    classes.push(extraClass);
+  }
+
+  if (isWeekend(data.days_of_week[index])) {
+    classes.push("weekend-col");
+  }
+
+  if (isNewMonth(data.dates, index)) {
+    classes.push("new-month");
+  }
+
+  if (activeDateIndex === index) {
+    classes.push("active-date");
+  }
+
+  return classes.join(" ");
+}
+
+function countClass(counts) {
+  if (counts.available > 8) return "available";
+  if (counts.available > 3) return "some";
+  if (counts.available > 0) return "limited";
+  return "reserved";
+}
+
+function countLabel(counts) {
+  return String(counts.available || 0);
+}
+
+function statusClass(status) {
+  const group = status?.group || "missing";
+
+  if (group === "available") return "available";
+  if (group === "reserved") return "reserved";
+  if (group === "first_come") return "first-come";
+  if (group === "not_reservable") return "not-reservable";
+  if (group === "closed") return "closed";
+
+  return "unavailable";
+}
+
+function statusLabel(status) {
+  if (!status) return "";
+  return status.code || "";
 }
 
 function renderHeader(data) {
-  return data.dates.map((date, i) => {
-    const dow = data.days_of_week ? data.days_of_week[i] : "";
-    const parts = dateParts(date);
-    return `
-      <th class="${thClasses(data, i)}" onclick="selectDate(${i})">
-        <span class="dow">${dow}</span>
-        <span class="date-month">${parts.month}</span>
-        <span class="date-day">${parts.day}</span>
-      </th>
-    `;
-  }).join("");
-}
-
-function siteStatusLabel(status) {
-  if (status === "available") return "✓";
-  if (status === "full") return "×";
-  return status;
-}
-
-function renderMasterTable(data) {
-  const header = renderHeader(data);
-  const districtByFacility = new Map(data.district_calendar.map(row => [row.facility, row]));
-
-  const rows = data.facilities.map(facility => {
-    const id = slugify(facility.name);
-    const districtRow = districtByFacility.get(facility.name);
-    const counts = districtRow ? districtRow.available_counts : [];
-
-    const facilityCells = counts.map((count, i) => `
-      <td class="${tdClasses(data, i, `status ${countClass(count)}`)}" onclick="selectDate(${i}); event.stopPropagation();">${count}</td>
-    `).join("");
-
-    const siteRows = facility.sites.map(site => {
-      const siteCells = site.days.map((status, i) => `
-        <td class="${tdClasses(data, i, `status ${status}`)}">${siteStatusLabel(status)}</td>
-      `).join("");
+  return data.dates
+    .map((date, index) => {
+      const parts = dateParts(date);
+      const classes = thClasses(data, index);
 
       return `
-        <tr class="site-row site-for-${id}" data-parent="${id}" style="display: none;">
-          <td class="site-name">
-            <strong>${site.site}</strong>
-            ${site.loop ? `<span class="site-meta">${site.loop}</span>` : ""}
-            ${site.site_type ? `<span class="site-meta">${site.site_type}</span>` : ""}
-          </td>
-          ${siteCells}
-        </tr>
+        <th class="${classes}" onclick="selectDate(${index})" title="Highlight ${date}">
+          <div class="dow">${data.days_of_week[index]}</div>
+          <div class="date-month">${parts.month}</div>
+          <div class="date-day">${parts.day}</div>
+        </th>
       `;
-    }).join("");
+    })
+    .join("");
+}
 
-    return `
-      <tr class="facility-row" id="${id}" data-facility="${id}" onclick="toggleFacility('${id}')">
-        <td class="facility-name">
-          <span class="toggle-icon" id="icon-${id}">▶</span>
-          <span class="facility-title">${facility.name}</span>
-          <span class="site-count">${facility.sites.length} sites</span>
-        </td>
-        ${facilityCells}
-      </tr>
-      ${siteRows}
-    `;
-  }).join("");
-
+function renderLegend() {
   return `
-    <div class="facility-header-row">
-      <div>
-        <h2>District 60-Day Availability</h2>
-        <p class="helper">Click a date or availability count to highlight that date. Expand facilities to see site-level availability.</p>
-        <div class="legend">
-          <span><b class="legend-box available"></b> 9+ sites</span>
-          <span><b class="legend-box some"></b> 4–8 sites</span>
-          <span><b class="legend-box limited"></b> 1–3 sites</span>
-          <span><b class="legend-box full"></b> 0 sites</span>
-        </div>
-      </div>
-      <div class="facility-actions">
-        <button type="button" onclick="expandAllFacilities()">Expand All</button>
-        <button type="button" onclick="collapseAllFacilities()">Collapse All</button>
-        <button type="button" onclick="clearDateHighlight()">Clear Highlight</button>
-      </div>
-    </div>
-
-    <div class="table-wrap master-table-wrap">
-      <table class="master-table">
-        <thead>
-          <tr>
-            <th>Facility / Site</th>
-            ${header}
-          </tr>
-        </thead>
-        <tbody>${rows}</tbody>
-      </table>
+    <div class="legend">
+      <span><strong>Collapsed facility rows show online-reservable available site counts only.</strong></span>
+      <span><span class="legend-box available"></span>9+ available</span>
+      <span><span class="legend-box some"></span>4-8 available</span>
+      <span><span class="legend-box limited"></span>1-3 available</span>
+      <span><span class="legend-box reserved"></span>0 available</span>
+      <span><span class="legend-box first-come"></span>FF appears on expanded site rows</span>
+      <span>Weekends shaded</span>
     </div>
   `;
 }
 
-function toggleFacility(id) {
-  const rows = document.querySelectorAll(`.site-for-${id}`);
-  const icon = document.getElementById(`icon-${id}`);
-  const anyHidden = Array.from(rows).some(row => row.style.display === "none");
+function renderMasterTable(data) {
+  let html = `
+    <section>
+      <div class="facility-header-row">
+        <h2>District 60-Day Availability</h2>
+        <div class="facility-actions">
+          <button onclick="expandAllFacilities()">Expand All</button>
+          <button onclick="collapseAllFacilities()">Collapse All</button>
+          <button onclick="clearDateHighlight()">Clear Highlight</button>
+        </div>
+      </div>
 
-  rows.forEach(row => row.style.display = anyHidden ? "table-row" : "none");
-  if (icon) icon.textContent = anyHidden ? "▼" : "▶";
+      ${renderLegend()}
+
+      <div class="table-wrap master-table-wrap">
+        <table class="availability-table master-table">
+          <thead>
+            <tr>
+              <th>Facility / Site</th>
+              ${renderHeader(data)}
+            </tr>
+          </thead>
+          <tbody>
+  `;
+
+  data.facilities.forEach((facility, facilityIndex) => {
+    const facilityKey = `facility-${facilityIndex}`;
+
+    html += `
+      <tr class="facility-row" onclick="toggleFacility('${facilityKey}')">
+        <td class="facility-name">
+          <span class="toggle-icon" id="${facilityKey}-icon">▶</span>
+          <span class="facility-title">${facility.name}</span>
+          <span class="site-count">${facility.sites.length} sites</span>
+        </td>
+    `;
+
+    facility.calendar.forEach((counts, dateIndex) => {
+      const label = countLabel(counts);
+      const klass = countClass(counts);
+      const title = [
+        `${facility.name}`,
+        `${data.dates[dateIndex]}`,
+        `${counts.available} available`,
+        `${counts.first_come} FF`,
+        `${counts.reserved} reserved`,
+        `${counts.not_reservable} not reservable`,
+        `${counts.closed} closed`,
+      ].join(" · ");
+
+      html += `<td class="${tdClasses(data, dateIndex, klass)}" title="${title}">${label}</td>`;
+    });
+
+    html += `</tr>`;
+
+    facility.sites.forEach((site) => {
+      html += `
+        <tr class="site-row ${facilityKey}" style="display: none;">
+          <td class="site-name">
+            <div><strong>Site ${site.site}</strong></div>
+            <div class="site-meta">
+              ${site.metadata_summary || site.site_type || ""}
+            </div>
+          </td>
+      `;
+
+      site.days.forEach((status, dateIndex) => {
+        const klass = statusClass(status);
+        const label = statusLabel(status);
+        const title = `${data.dates[dateIndex]} · Site ${site.site} · ${status.label || ""}`;
+
+        html += `<td class="${tdClasses(data, dateIndex, klass)} status" title="${title}">${label}</td>`;
+      });
+
+      html += `</tr>`;
+    });
+  });
+
+  html += `
+          </tbody>
+        </table>
+      </div>
+    </section>
+  `;
+
+  return html;
+}
+
+function toggleFacility(facilityKey) {
+  const rows = document.querySelectorAll(`.${facilityKey}`);
+  const icon = document.getElementById(`${facilityKey}-icon`);
+
+  if (!rows.length) return;
+
+  const isHidden = rows[0].style.display === "none";
+
+  rows.forEach((row) => {
+    row.style.display = isHidden ? "table-row" : "none";
+  });
+
+  if (icon) {
+    icon.textContent = isHidden ? "▼" : "▶";
+  }
+
+  applyDateHighlight();
 }
 
 function expandAllFacilities() {
-  document.querySelectorAll(".site-row").forEach(row => row.style.display = "table-row");
-  document.querySelectorAll(".toggle-icon").forEach(icon => icon.textContent = "▼");
+  document.querySelectorAll(".site-row").forEach((row) => {
+    row.style.display = "table-row";
+  });
+
+  document.querySelectorAll(".toggle-icon").forEach((icon) => {
+    icon.textContent = "▼";
+  });
+
+  applyDateHighlight();
 }
 
 function collapseAllFacilities() {
-  document.querySelectorAll(".site-row").forEach(row => row.style.display = "none");
-  document.querySelectorAll(".toggle-icon").forEach(icon => icon.textContent = "▶");
-}
-
-function selectDate(index) {
-  activeDateIndex = index;
-  document.querySelectorAll(".active-date").forEach(el => el.classList.remove("active-date"));
-
-  document.querySelectorAll(".master-table tr").forEach(row => {
-    const cell = row.children[index + 1];
-    if (cell) cell.classList.add("active-date");
+  document.querySelectorAll(".site-row").forEach((row) => {
+    row.style.display = "none";
   });
+
+  document.querySelectorAll(".toggle-icon").forEach((icon) => {
+    icon.textContent = "▶";
+  });
+
+  applyDateHighlight();
 }
 
 function clearDateHighlight() {
   activeDateIndex = null;
-  document.querySelectorAll(".active-date").forEach(el => el.classList.remove("active-date"));
+  document.querySelectorAll(".active-date").forEach((cell) => {
+    cell.classList.remove("active-date");
+  });
+}
+
+function selectDate(index) {
+  activeDateIndex = index;
+  applyDateHighlight();
+}
+
+function applyDateHighlight() {
+  document.querySelectorAll(".active-date").forEach((cell) => {
+    cell.classList.remove("active-date");
+  });
+
+  if (activeDateIndex === null) return;
+
+  document.querySelectorAll("tr").forEach((row) => {
+    const cell = row.children[activeDateIndex + 1];
+    if (cell) {
+      cell.classList.add("active-date");
+    }
+  });
 }
 
 fetch(DATA_URL)
-  .then(response => {
-    if (!response.ok) throw new Error(`Could not load ${DATA_URL}`);
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Could not load ${DATA_URL}`);
+    }
     return response.json();
   })
-  .then(data => {
-    document.getElementById("availability-app").innerHTML = `
+  .then((data) => {
+    app.innerHTML = `
       <h1>${data.district_name}</h1>
       <p class="updated">Last updated: ${data.last_updated}</p>
       ${renderMasterTable(data)}
     `;
   })
-  .catch(error => {
-    document.getElementById("availability-app").innerHTML =
-      `<p>Availability data could not be loaded for <strong>${district}</strong>.</p>`;
-    console.error(error);
+  .catch((error) => {
+    app.innerHTML = `
+      <h1>Availability data could not be loaded</h1>
+      <p>We could not load availability data for <strong>${district}</strong>.</p>
+      <p class="updated">${error.message}</p>
+    `;
   });

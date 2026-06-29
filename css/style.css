@@ -273,3 +273,89 @@ thead th:first-child {
 .facility-actions button {
   white-space: nowrap;
 }
+
+/* Status classes for richer availability model */
+.available {
+  background: #b7e4c7;
+}
+
+.reserved {
+  background: #f4a6a6;
+}
+
+.first-come {
+  background: #bde0fe;
+}
+
+.not-reservable {
+  background: #d9d9d9;
+}
+
+.closed {
+  background: #b8b8b8;
+}
+
+.unavailable {
+  background: #f6d6a8;
+}
+
+.status {
+  font-weight: bold;
+  text-align: center;
+}
+
+.site-meta {
+  font-size: 11px;
+  color: #555;
+  margin-top: 2px;
+  line-height: 1.25;
+}
+
+.legend-box.first-come {
+  background: #bde0fe;
+}
+
+.legend-box.reserved {
+  background: #f4a6a6;
+}
+
+.legend-box.not-reservable {
+  background: #d9d9d9;
+}
+
+.legend-box.closed {
+  background: #b8b8b8;
+}
+
+/* Availability intensity scale for collapsed facility rows */
+.available {
+  background: #74c69d;
+}
+
+.some {
+  background: #b7e4c7;
+}
+
+.limited {
+  background: #ffd166;
+}
+
+.reserved {
+  background: #f4a6a6;
+}
+
+.legend-box.available {
+  background: #74c69d;
+}
+
+.legend-box.some {
+  background: #b7e4c7;
+}
+
+.legend-box.limited {
+  background: #ffd166;
+}
+
+.legend-box.reserved {
+  background: #f4a6a6;
+}
