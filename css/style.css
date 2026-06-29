@@ -359,3 +359,39 @@ thead th:first-child {
 .legend-box.reserved {
   background: #f4a6a6;
 }
+
+/* Keep sticky facility/site column readable without expanding too wide */
+.availability-table th:first-child,
+.availability-table td:first-child {
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Wrap long campsite metadata inside the sticky column */
+.site-meta {
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  line-height: 1.25;
+  max-width: 240px;
+}
+
+/* Keep site number and facility title readable */
+.site-name strong,
+.facility-title {
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Make date columns stay compact */
+.availability-table th:not(:first-child),
+.availability-table td:not(:first-child) {
+  min-width: 58px;
+  max-width: 58px;
+  width: 58px;
+  text-align: center;
+}
