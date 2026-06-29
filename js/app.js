@@ -2,11 +2,10 @@ const params = new URLSearchParams(window.location.search);
 const district = params.get("district") || "or-siuslaw-central-coast";
 const DATA_URL = `data/districts/${district}.json`;
 
+let activeDateIndex = null;
+
 function slugify(text) {
-  return String(text)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+  return String(text).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
 function countClass(value) {
@@ -17,45 +16,75 @@ function countClass(value) {
   return "available";
 }
 
-function dateHeader(label) {
+function dateParts(label) {
   const parts = String(label).split(" ");
-  const month = parts[0] || "";
-  const day = parts[1] || "";
-  return `<span class="date-month">${month}</span><span class="date-day">${day}</span>`;
+  return { month: parts[0] || "", day: parts[1] || "" };
 }
 
-function siteStatusLabel(status) {
-  if (status === "available") return "Open";
-  if (status === "full") return "Full";
-  return status;
+function isWeekend(dow) {
+  return dow === "Sat" || dow === "Sun";
+}
+
+function isNewMonth(data, i) {
+  if (i === 0) return false;
+  return dateParts(data.dates[i]).month !== dateParts(data.dates[i - 1]).month;
+}
+
+function thClasses(data, i) {
+  const dow = data.days_of_week ? data.days_of_week[i] : "";
+  return [
+    isWeekend(dow) ? "weekend-col" : "",
+    isNewMonth(data, i) ? "new-month" : "",
+    activeDateIndex === i ? "active-date" : ""
+  ].join(" ");
+}
+
+function tdClasses(data, i, baseClass = "") {
+  const dow = data.days_of_week ? data.days_of_week[i] : "";
+  return [
+    baseClass,
+    isWeekend(dow) ? "weekend-col" : "",
+    isNewMonth(data, i) ? "new-month" : "",
+    activeDateIndex === i ? "active-date" : ""
+  ].join(" ");
 }
 
 function renderHeader(data) {
   return data.dates.map((date, i) => {
     const dow = data.days_of_week ? data.days_of_week[i] : "";
-    return `<th><span class="dow">${dow}</span>${dateHeader(date)}</th>`;
+    const parts = dateParts(date);
+    return `
+      <th class="${thClasses(data, i)}" onclick="selectDate(${i})">
+        <span class="dow">${dow}</span>
+        <span class="date-month">${parts.month}</span>
+        <span class="date-day">${parts.day}</span>
+      </th>
+    `;
   }).join("");
+}
+
+function siteStatusLabel(status) {
+  if (status === "available") return "✓";
+  if (status === "full") return "×";
+  return status;
 }
 
 function renderMasterTable(data) {
   const header = renderHeader(data);
-
-  const districtByFacility = new Map(
-    data.district_calendar.map(row => [row.facility, row])
-  );
+  const districtByFacility = new Map(data.district_calendar.map(row => [row.facility, row]));
 
   const rows = data.facilities.map(facility => {
     const id = slugify(facility.name);
     const districtRow = districtByFacility.get(facility.name);
     const counts = districtRow ? districtRow.available_counts : [];
 
-    const facilityCells = counts.map(count => `
-      <td class="status ${countClass(count)}">${count}</td>
+    const facilityCells = counts.map((count, i) => `
+      <td class="${tdClasses(data, i, `status ${countClass(count)}`)}" onclick="selectDate(${i}); event.stopPropagation();">${count}</td>
     `).join("");
 
     const siteRows = facility.sites.map(site => {
-      const siteCells = site.days.map(status => `
-        <td class="status ${status}">${siteStatusLabel(status)}</td>
+      const siteCells = site.days.map((status, i) => `
+        <td class="${tdClasses(data, i, `status ${status}`)}">${siteStatusLabel(status)}</td>
       `).join("");
 
       return `
@@ -74,8 +103,8 @@ function renderMasterTable(data) {
       <tr class="facility-row" id="${id}" data-facility="${id}" onclick="toggleFacility('${id}')">
         <td class="facility-name">
           <span class="toggle-icon" id="icon-${id}">▶</span>
-          <strong>${facility.name}</strong>
-          <span class="site-count">(${facility.sites.length} sites)</span>
+          <span class="facility-title">${facility.name}</span>
+          <span class="site-count">${facility.sites.length} sites</span>
         </td>
         ${facilityCells}
       </tr>
@@ -87,11 +116,18 @@ function renderMasterTable(data) {
     <div class="facility-header-row">
       <div>
         <h2>District 60-Day Availability</h2>
-        <p class="helper">Collapsed rows show available site counts by facility. Expand a facility to see site-by-site availability.</p>
+        <p class="helper">Click a date or availability count to highlight that date. Expand facilities to see site-level availability.</p>
+        <div class="legend">
+          <span><b class="legend-box available"></b> 9+ sites</span>
+          <span><b class="legend-box some"></b> 4–8 sites</span>
+          <span><b class="legend-box limited"></b> 1–3 sites</span>
+          <span><b class="legend-box full"></b> 0 sites</span>
+        </div>
       </div>
       <div class="facility-actions">
         <button type="button" onclick="expandAllFacilities()">Expand All</button>
         <button type="button" onclick="collapseAllFacilities()">Collapse All</button>
+        <button type="button" onclick="clearDateHighlight()">Clear Highlight</button>
       </div>
     </div>
 
@@ -103,9 +139,7 @@ function renderMasterTable(data) {
             ${header}
           </tr>
         </thead>
-        <tbody>
-          ${rows}
-        </tbody>
+        <tbody>${rows}</tbody>
       </table>
     </div>
   `;
@@ -116,31 +150,33 @@ function toggleFacility(id) {
   const icon = document.getElementById(`icon-${id}`);
   const anyHidden = Array.from(rows).some(row => row.style.display === "none");
 
-  rows.forEach(row => {
-    row.style.display = anyHidden ? "table-row" : "none";
-  });
-
-  if (icon) {
-    icon.textContent = anyHidden ? "▼" : "▶";
-  }
+  rows.forEach(row => row.style.display = anyHidden ? "table-row" : "none");
+  if (icon) icon.textContent = anyHidden ? "▼" : "▶";
 }
 
 function expandAllFacilities() {
-  document.querySelectorAll(".site-row").forEach(row => {
-    row.style.display = "table-row";
-  });
-  document.querySelectorAll(".toggle-icon").forEach(icon => {
-    icon.textContent = "▼";
-  });
+  document.querySelectorAll(".site-row").forEach(row => row.style.display = "table-row");
+  document.querySelectorAll(".toggle-icon").forEach(icon => icon.textContent = "▼");
 }
 
 function collapseAllFacilities() {
-  document.querySelectorAll(".site-row").forEach(row => {
-    row.style.display = "none";
+  document.querySelectorAll(".site-row").forEach(row => row.style.display = "none");
+  document.querySelectorAll(".toggle-icon").forEach(icon => icon.textContent = "▶");
+}
+
+function selectDate(index) {
+  activeDateIndex = index;
+  document.querySelectorAll(".active-date").forEach(el => el.classList.remove("active-date"));
+
+  document.querySelectorAll(".master-table tr").forEach(row => {
+    const cell = row.children[index + 1];
+    if (cell) cell.classList.add("active-date");
   });
-  document.querySelectorAll(".toggle-icon").forEach(icon => {
-    icon.textContent = "▶";
-  });
+}
+
+function clearDateHighlight() {
+  activeDateIndex = null;
+  document.querySelectorAll(".active-date").forEach(el => el.classList.remove("active-date"));
 }
 
 fetch(DATA_URL)
