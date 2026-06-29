@@ -13,50 +13,33 @@ function countClass(value) {
   const n = Number(value);
   if (n <= 0) return "full";
   if (n <= 3) return "limited";
+  if (n <= 8) return "some";
   return "available";
 }
 
-function renderSummary(data) {
-  let rows = data.summary.map(row => `
-    <tr>
-      <td><a href="#${slugify(row.facility)}">${row.facility}</a></td>
-      <td>${row.tonight}</td>
-      <td>${row.next_7_available_nights}</td>
-      <td>${row.next_14_available_nights}</td>
-      <td>${row.next_30_available_nights}</td>
-    </tr>
-  `).join("");
-
-  return `
-    <h2>District Summary</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Facility</th>
-            <th>Available Tonight</th>
-            <th>Next 7 Days</th>
-            <th>Next 14 Days</th>
-            <th>Next 30 Days</th>
-          </tr>
-        </thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>
-  `;
+function dateHeader(label) {
+  const parts = String(label).split(" ");
+  const month = parts[0] || "";
+  const day = parts[1] || "";
+  return `<span class="date-month">${month}</span><span class="date-day">${day}</span>`;
 }
 
 function renderDistrictCalendar(data) {
-  let header = data.dates.map(date => `<th>${date}</th>`).join("");
+  const header = data.dates.map((date, i) => {
+    const dow = data.days_of_week ? data.days_of_week[i] : "";
+    return `<th><span class="dow">${dow}</span>${dateHeader(date)}</th>`;
+  }).join("");
 
-  let body = data.district_calendar.map(row => {
-    let cells = row.available_counts.map(count => `
+  const body = data.district_calendar.map(row => {
+    const id = slugify(row.facility);
+
+    const cells = row.available_counts.map(count => `
       <td class="status ${countClass(count)}">${count}</td>
     `).join("");
 
     return `
       <tr>
-        <td><a href="#${slugify(row.facility)}">${row.facility}</a></td>
+        <td><a href="#${id}" onclick="openFacility('${id}')">${row.facility}</a></td>
         ${cells}
       </tr>
     `;
@@ -85,25 +68,34 @@ function siteStatusLabel(status) {
   return status;
 }
 
-function renderFacilityCalendar(facility, dates) {
-  let header = dates.map(date => `<th>${date}</th>`).join("");
+function renderFacilityCalendar(facility, dates, daysOfWeek) {
+  const id = slugify(facility.name);
 
-  let body = facility.sites.map(row => {
-    let cells = row.days.map(status => `
+  const header = dates.map((date, i) => {
+    const dow = daysOfWeek ? daysOfWeek[i] : "";
+    return `<th><span class="dow">${dow}</span>${dateHeader(date)}</th>`;
+  }).join("");
+
+  const body = facility.sites.map(row => {
+    const cells = row.days.map(status => `
       <td class="status ${status}">${siteStatusLabel(status)}</td>
     `).join("");
 
     return `
       <tr>
-        <td>${row.site}</td>
+        <td>
+          <strong>${row.site}</strong>
+          ${row.loop ? `<span class="site-meta">${row.loop}</span>` : ""}
+          ${row.site_type ? `<span class="site-meta">${row.site_type}</span>` : ""}
+        </td>
         ${cells}
       </tr>
     `;
   }).join("");
 
   return `
-    <section id="${slugify(facility.name)}">
-      <h2>${facility.name}</h2>
+    <details id="${id}" class="facility-detail">
+      <summary>${facility.name} <span class="site-count">(${facility.sites.length} sites)</span></summary>
       <div class="table-wrap">
         <table>
           <thead>
@@ -115,14 +107,46 @@ function renderFacilityCalendar(facility, dates) {
           <tbody>${body}</tbody>
         </table>
       </div>
-    </section>
+    </details>
   `;
 }
 
 function renderFacilities(data) {
-  return data.facilities
-    .map(facility => renderFacilityCalendar(facility, data.dates))
-    .join("");
+  return `
+    <div class="facility-header-row">
+      <div>
+        <h2>Facility Detail</h2>
+        <p class="helper">Open one or more facilities to compare site-by-site availability.</p>
+      </div>
+      <div class="facility-actions">
+        <button type="button" onclick="expandAllFacilities()">Expand All</button>
+        <button type="button" onclick="collapseAllFacilities()">Collapse All</button>
+      </div>
+    </div>
+
+    ${data.facilities
+      .map(facility => renderFacilityCalendar(facility, data.dates, data.days_of_week))
+      .join("")}
+  `;
+}
+
+function expandAllFacilities() {
+  document.querySelectorAll(".facility-detail").forEach(el => {
+    el.open = true;
+  });
+}
+
+function collapseAllFacilities() {
+  document.querySelectorAll(".facility-detail").forEach(el => {
+    el.open = false;
+  });
+}
+
+function openFacility(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.open = true;
+  }
 }
 
 fetch(DATA_URL)
@@ -134,7 +158,6 @@ fetch(DATA_URL)
     document.getElementById("availability-app").innerHTML = `
       <h1>${data.district_name}</h1>
       <p class="updated">Last updated: ${data.last_updated}</p>
-      ${renderSummary(data)}
       ${renderDistrictCalendar(data)}
       ${renderFacilities(data)}
     `;
