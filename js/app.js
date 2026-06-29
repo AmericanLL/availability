@@ -1,4 +1,6 @@
-const DATA_URL = "data/districts/or-siuslaw-central-coast.json";
+const params = new URLSearchParams(window.location.search);
+const district = params.get("district") || "or-siuslaw-central-coast";
+const DATA_URL = `data/districts/${district}.json`;
 
 function statusLabel(status) {
   if (status === "available") return "Open";
@@ -10,7 +12,7 @@ function statusLabel(status) {
 function renderSummary(data) {
   let rows = data.summary.map(row => `
     <tr>
-      <td>${row.facility}</td>
+      <td><a href="#${slugify(row.facility)}">${row.facility}</a></td>
       <td>${row.tonight}</td>
       <td>${row.next_7_days}</td>
       <td>${row.next_14_days}</td>
@@ -35,6 +37,13 @@ function renderSummary(data) {
       </table>
     </div>
   `;
+}
+
+function slugify(text) {
+  return String(text)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }
 
 function renderCalendar(title, firstCol, rows, dates) {
@@ -71,12 +80,21 @@ function renderCalendar(title, firstCol, rows, dates) {
 
 function renderFacilities(data) {
   return data.facilities.map(facility => {
-    return renderCalendar(facility.name, "site", facility.sites, data.dates);
+    return `
+      <section id="${slugify(facility.name)}">
+        ${renderCalendar(facility.name, "site", facility.sites, data.dates)}
+      </section>
+    `;
   }).join("");
 }
 
 fetch(DATA_URL)
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Could not load ${DATA_URL}`);
+    }
+    return response.json();
+  })
   .then(data => {
     document.getElementById("availability-app").innerHTML = `
       <h1>${data.district_name}</h1>
@@ -88,6 +106,6 @@ fetch(DATA_URL)
   })
   .catch(error => {
     document.getElementById("availability-app").innerHTML =
-      "<p>Availability data could not be loaded.</p>";
+      `<p>Availability data could not be loaded for <strong>${district}</strong>.</p>`;
     console.error(error);
   });
