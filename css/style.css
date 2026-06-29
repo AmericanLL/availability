@@ -143,3 +143,30 @@ th:first-child, td:first-child {
   font-weight: normal;
   margin-top: 2px;
 }
+
+.table-wrap {
+  max-height: 75vh;
+  overflow: auto;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: white;
+}
+
+thead th:first-child {
+  z-index: 4;
+}
+
+tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: white;
+}
+
+thead th:first-child {
+  left: 0;
+}
