@@ -433,3 +433,127 @@ thead th:first-child {
 .booking-link:hover {
   text-decoration: none;
 }
+
+/* Mobile table scaling for iframe/Squarespace use */
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .updated,
+  .legend,
+  .facility-actions,
+  .filter-toggle,
+  .filter-select {
+    font-size: 11px;
+  }
+
+  .facility-actions {
+    gap: 6px;
+  }
+
+  .filter-toggle,
+  .filter-select,
+  .facility-actions button {
+    padding: 5px 6px;
+    font-size: 11px;
+  }
+
+  .availability-table {
+    font-size: 11px;
+  }
+
+  .availability-table th:first-child,
+  .availability-table td:first-child {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+  }
+
+  .site-meta {
+    max-width: 135px;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .facility-title {
+    font-size: 12px;
+  }
+
+  .site-count,
+  .booking-link {
+    font-size: 10px;
+  }
+
+  .site-name {
+    padding-left: 18px !important;
+    font-size: 10px;
+  }
+
+  .availability-table th:not(:first-child),
+  .availability-table td:not(:first-child) {
+    width: 42px;
+    min-width: 42px;
+    max-width: 42px;
+    font-size: 10px;
+  }
+
+  .dow {
+    font-size: 9px;
+  }
+
+  .date-month {
+    font-size: 9px;
+  }
+
+  .date-day {
+    font-size: 11px;
+  }
+
+  .status {
+    font-size: 11px;
+  }
+
+  .table-wrap {
+    max-height: 78vh;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .availability-table th:first-child,
+  .availability-table td:first-child {
+    width: 125px;
+    min-width: 125px;
+    max-width: 125px;
+  }
+
+  .site-meta {
+    max-width: 112px;
+    font-size: 9px;
+  }
+
+  .availability-table th:not(:first-child),
+  .availability-table td:not(:first-child) {
+    width: 38px;
+    min-width: 38px;
+    max-width: 38px;
+    font-size: 9px;
+  }
+
+  .facility-title {
+    font-size: 11px;
+  }
+
+  .booking-link {
+    font-size: 9px;
+  }
+}
