@@ -278,6 +278,15 @@ function renderMasterTable(data) {
           <span class="toggle-icon" id="${facilityKey}-icon">▶</span>
           <span class="facility-title">${facility.name}</span>
           <span class="site-count">${facility.sites.length} sites</span>
+          <a
+            class="booking-link"
+            href="${facility.booking_url || `https://www.recreation.gov/camping/campgrounds/${facility.facility_id}`}"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="event.stopPropagation();"
+          >
+            Open on Recreation.gov
+          </a>
         </td>
     `;
 
