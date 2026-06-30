@@ -557,3 +557,91 @@ thead th:first-child {
     font-size: 9px;
   }
 }
+
+/* More compact phone layout */
+@media screen and (max-width: 480px) {
+  .availability-table th:first-child,
+  .availability-table td:first-child {
+    width: 105px;
+    min-width: 105px;
+    max-width: 105px;
+  }
+
+  .site-meta {
+    display: none;
+  }
+
+  .site-name {
+    padding-left: 12px !important;
+  }
+
+  .availability-table th:not(:first-child),
+  .availability-table td:not(:first-child) {
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    font-size: 9px;
+  }
+
+  .facility-title {
+    font-size: 10px;
+  }
+
+  .site-count,
+  .booking-link {
+    font-size: 9px;
+  }
+
+  .dow,
+  .date-month {
+    font-size: 8px;
+  }
+
+  .date-day {
+    font-size: 10px;
+  }
+}
+
+/* More compact phone layout */
+@media screen and (max-width: 480px) {
+  .availability-table th:first-child,
+  .availability-table td:first-child {
+    width: 105px;
+    min-width: 105px;
+    max-width: 105px;
+  }
+
+  .site-meta {
+    display: none;
+  }
+
+  .site-name {
+    padding-left: 12px !important;
+  }
+
+  .availability-table th:not(:first-child),
+  .availability-table td:not(:first-child) {
+    width: 34px;
+    min-width: 34px;
+    max-width: 34px;
+    font-size: 9px;
+  }
+
+  .facility-title {
+    font-size: 10px;
+  }
+
+  .site-count,
+  .booking-link {
+    font-size: 9px;
+  }
+
+  .dow,
+  .date-month {
+    font-size: 8px;
+  }
+
+  .date-day {
+    font-size: 10px;
+  }
+}
