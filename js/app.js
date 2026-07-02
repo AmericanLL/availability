@@ -32,6 +32,26 @@ function slugify(value) {
     .replace(/^-|-$/g, "");
 }
 
+function buildBookingUrlWithTracking(facility) {
+  const baseUrl = facility.booking_url || `https://www.recreation.gov/camping/campgrounds/${facility.facility_id}`;
+
+  try {
+    const url = new URL(baseUrl);
+    const facilitySlug = slugify(
+      facility.facility || facility.name || facility.facility_name || facility.facility_id
+    );
+
+    url.searchParams.set("utm_source", "americanll");
+    url.searchParams.set("utm_medium", "availability_explorer");
+    url.searchParams.set("utm_campaign", "public_availability");
+    url.searchParams.set("utm_content", `${slugify(district)}__${facilitySlug}`);
+
+    return url.toString();
+  } catch (error) {
+    return baseUrl;
+  }
+}
+
 function dateParts(label) {
   const parts = String(label).split(" ");
   return {
@@ -280,7 +300,7 @@ function renderMasterTable(data) {
           <span class="site-count">${facility.sites.length} sites</span>
           <a
             class="booking-link"
-            href="${facility.booking_url || `https://www.recreation.gov/camping/campgrounds/${facility.facility_id}`}"
+            href="${buildBookingUrlWithTracking(facility)}"
             target="_blank"
             rel="noopener noreferrer"
             onclick="event.stopPropagation();"
