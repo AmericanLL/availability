@@ -3,9 +3,8 @@
   "state": "CO",
   "permit": "White River",
   "district": "Aspen",
-  "last_updated": "2026-07-01T06:30:07",
+  "last_updated": "2026-07-02T06:30:10",
   "dates": [
-    "Jul 1",
     "Jul 2",
     "Jul 3",
     "Jul 4",
@@ -64,10 +63,10 @@
     "Aug 26",
     "Aug 27",
     "Aug 28",
-    "Aug 29"
+    "Aug 29",
+    "Aug 30"
   ],
   "days_of_week": [
-    "Wed",
     "Thu",
     "Fri",
     "Sat",
@@ -126,7 +125,8 @@
     "Wed",
     "Thu",
     "Fri",
-    "Sat"
+    "Sat",
+    "Sun"
   ],
   "facilities": [
     {
@@ -135,7 +135,16 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/231880",
       "calendar": [
         {
-          "date": "Jul 1",
+          "date": "Jul 2",
+          "available": 0,
+          "reserved": 43,
+          "first_come": 4,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Jul 3",
           "available": 0,
           "reserved": 46,
           "first_come": 1,
@@ -144,27 +153,9 @@
           "unavailable": 0
         },
         {
-          "date": "Jul 2",
-          "available": 0,
-          "reserved": 47,
-          "first_come": 0,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
-          "date": "Jul 3",
-          "available": 0,
-          "reserved": 47,
-          "first_come": 0,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
           "date": "Jul 4",
-          "available": 0,
-          "reserved": 47,
+          "available": 1,
+          "reserved": 46,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -172,8 +163,8 @@
         },
         {
           "date": "Jul 5",
-          "available": 1,
-          "reserved": 46,
+          "available": 4,
+          "reserved": 43,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -181,8 +172,8 @@
         },
         {
           "date": "Jul 6",
-          "available": 2,
-          "reserved": 45,
+          "available": 1,
+          "reserved": 46,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -190,8 +181,8 @@
         },
         {
           "date": "Jul 7",
-          "available": 1,
-          "reserved": 46,
+          "available": 0,
+          "reserved": 47,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -208,8 +199,8 @@
         },
         {
           "date": "Jul 9",
-          "available": 0,
-          "reserved": 47,
+          "available": 2,
+          "reserved": 45,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -388,8 +379,8 @@
         },
         {
           "date": "Jul 29",
-          "available": 0,
-          "reserved": 47,
+          "available": 1,
+          "reserved": 46,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -640,8 +631,8 @@
         },
         {
           "date": "Aug 26",
-          "available": 24,
-          "reserved": 23,
+          "available": 23,
+          "reserved": 24,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -649,8 +640,8 @@
         },
         {
           "date": "Aug 27",
-          "available": 20,
-          "reserved": 27,
+          "available": 19,
+          "reserved": 28,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -669,6 +660,15 @@
           "date": "Aug 29",
           "available": 0,
           "reserved": 47,
+          "first_come": 0,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Aug 30",
+          "available": 24,
+          "reserved": 23,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -704,7 +704,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 14,
             "driveway_length": null
@@ -1005,12 +1005,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -1069,6 +1063,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -1100,7 +1100,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 50,
             "site_width": 15,
             "driveway_length": null
@@ -1395,12 +1395,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -1465,6 +1459,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -1496,7 +1496,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 36,
             "site_width": 13,
             "driveway_length": null
@@ -1521,16 +1521,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "R",
@@ -1849,6 +1843,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -1892,7 +1892,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 47,
             "site_width": 12,
             "driveway_length": null
@@ -2223,22 +2223,22 @@
               "is_available": false
             },
             {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             },
             {
               "code": "R",
@@ -2288,7 +2288,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 44,
             "site_width": 12,
             "driveway_length": null
@@ -2577,12 +2577,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -2653,6 +2647,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -2961,12 +2961,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -3031,6 +3025,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -3080,19 +3080,13 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 30,
             "site_width": 12,
             "driveway_length": null
           },
           "days": [
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -3445,6 +3439,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -3476,7 +3476,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 48,
             "site_width": 14,
             "driveway_length": null
@@ -3795,34 +3795,34 @@
               "is_available": false
             },
             {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             },
             {
               "code": "R",
@@ -3872,7 +3872,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 42,
             "site_width": 10,
             "driveway_length": null
@@ -4161,12 +4161,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -4237,6 +4231,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -4268,7 +4268,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 12,
             "driveway_length": null
@@ -4479,12 +4479,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -4615,6 +4609,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -4664,7 +4664,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 13,
             "driveway_length": null
@@ -5060,7 +5060,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 13,
             "driveway_length": null
@@ -5421,10 +5421,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -5456,7 +5456,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 40,
             "site_width": 13,
             "driveway_length": null
@@ -5487,12 +5487,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -5821,6 +5815,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -5852,7 +5852,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 50,
             "site_width": 14,
             "driveway_length": null
@@ -6183,12 +6183,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -6217,6 +6211,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -6248,7 +6248,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 39,
             "site_width": 13,
             "driveway_length": null
@@ -6501,12 +6501,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -6559,6 +6553,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -6644,7 +6644,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 39,
             "site_width": 16,
             "driveway_length": null
@@ -6879,12 +6879,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -6997,6 +6991,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -7040,7 +7040,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 36,
             "site_width": 12,
             "driveway_length": null
@@ -7089,16 +7089,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "R",
@@ -7393,6 +7387,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -7436,7 +7436,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 48,
             "site_width": 10,
             "driveway_length": null
@@ -7719,12 +7719,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -7801,6 +7795,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -7832,7 +7832,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 50,
             "site_width": 15,
             "driveway_length": null
@@ -8127,12 +8127,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -8197,6 +8191,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -8228,7 +8228,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 30,
             "site_width": 11,
             "driveway_length": null
@@ -8439,12 +8439,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -8593,6 +8587,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -8624,7 +8624,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 52,
             "site_width": 16,
             "driveway_length": null
@@ -8985,10 +8985,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -9020,7 +9020,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 48,
             "site_width": 15,
             "driveway_length": null
@@ -9261,12 +9261,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -9373,6 +9367,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -9416,7 +9416,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 64,
             "site_width": 15,
             "driveway_length": null
@@ -9657,12 +9657,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -9781,6 +9775,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -9812,7 +9812,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 42,
             "site_width": 18,
             "driveway_length": null
@@ -10089,12 +10089,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -10177,6 +10171,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -10208,16 +10208,16 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 30,
             "site_width": 12,
             "driveway_length": null
           },
           "days": [
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -10604,7 +10604,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 35,
             "site_width": 28,
             "driveway_length": null
@@ -10965,10 +10965,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -11000,22 +11000,16 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 42,
             "site_width": 10,
             "driveway_length": null
           },
           "days": [
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -11365,6 +11359,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -11396,22 +11396,16 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 42,
             "site_width": 10,
             "driveway_length": null
           },
           "days": [
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -11743,6 +11737,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -11792,7 +11792,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 18,
             "driveway_length": null
@@ -12117,12 +12117,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -12157,6 +12151,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -12188,7 +12188,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 30,
             "site_width": 13,
             "driveway_length": null
@@ -12525,22 +12525,22 @@
               "is_available": false
             },
             {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             },
             {
               "code": "R",
@@ -12584,7 +12584,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 50,
             "site_width": 15,
             "driveway_length": null
@@ -12945,10 +12945,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -12980,7 +12980,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 30,
             "site_width": 13,
             "driveway_length": null
@@ -13023,12 +13023,6 @@
               "is_available": false
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -13333,6 +13327,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -13376,7 +13376,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 18,
             "driveway_length": null
@@ -13737,10 +13737,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -13772,7 +13772,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 28,
             "site_width": 15,
             "driveway_length": null
@@ -13809,12 +13809,6 @@
               "is_available": false
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -14137,6 +14131,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -14168,7 +14168,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 12,
             "driveway_length": null
@@ -14361,12 +14361,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -14479,6 +14473,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -14564,16 +14564,22 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 36,
             "site_width": 13,
             "driveway_length": null
           },
           "days": [
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
+              "is_available": false
+            },
+            {
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -14907,16 +14913,10 @@
               "is_available": false
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -14960,7 +14960,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 40,
             "site_width": 13,
             "driveway_length": null
@@ -15237,12 +15237,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -15325,6 +15319,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -15356,7 +15356,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 35,
             "site_width": 15,
             "driveway_length": null
@@ -15752,7 +15752,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 13,
             "driveway_length": null
@@ -16029,12 +16029,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -16099,6 +16093,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -16148,7 +16148,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 40,
             "site_width": 12,
             "driveway_length": null
@@ -16317,10 +16317,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "R",
@@ -16544,7 +16544,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 16,
             "driveway_length": null
@@ -16569,16 +16569,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "R",
@@ -16909,6 +16903,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -16940,7 +16940,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 40,
             "site_width": 14,
             "driveway_length": null
@@ -17145,16 +17145,16 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -17336,7 +17336,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 42,
             "site_width": 16,
             "driveway_length": null
@@ -17361,16 +17361,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "R",
@@ -17587,6 +17581,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -17732,7 +17732,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 11,
             "driveway_length": null
@@ -17781,16 +17781,10 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "R",
@@ -18097,6 +18091,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -18128,7 +18128,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 45,
             "site_width": 14,
             "driveway_length": null
@@ -18381,12 +18381,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -18493,6 +18487,12 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             }
           ]
         },
@@ -18524,7 +18524,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": 42,
             "site_width": 12,
             "driveway_length": null
@@ -18543,282 +18543,6 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -18855,10 +18579,286 @@
               "is_available": false
             },
             {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
               "code": "A",
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "R",
@@ -18920,7 +18920,7 @@
             "pets_allowed": "Yes",
             "campfire_allowed": "Yes",
             "checkin_time": "2:00 PM",
-            "checkout_time": "12:00 PM",
+            "checkout_time": "11:00 AM",
             "site_length": null,
             "site_width": null,
             "driveway_length": null
