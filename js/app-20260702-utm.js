@@ -16,6 +16,71 @@ const params = new URLSearchParams(window.location.search);
 const district = params.get("district") || "or-siuslaw-central-coast";
 const DATA_URL = `data/districts/${district}.json`;
 
+const CLICK_LOGGER_URL = "https://script.google.com/macros/s/AKfycbx46RmBF6VTtcN_StL7Ql6lOHLaRznQUmmJibDUzxrivPemPtM1eSo-d2_R9VfXZ_6j/exec";
+
+function getDeviceType() {
+  const width = window.innerWidth || 0;
+
+  if (width <= 767) {
+    return "mobile";
+  }
+
+  if (width <= 1024) {
+    return "tablet";
+  }
+
+  return "desktop";
+}
+
+function escapeAttribute(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function sendClickLogFromLink(link) {
+  const facility = {
+    facility_id: link.dataset.facilityId || "",
+    name: link.dataset.facilityName || ""
+  };
+
+  sendClickLog(facility, link.href);
+}
+
+function sendClickLog(facility, outboundUrl) {
+  if (!CLICK_LOGGER_URL) return;
+
+  try {
+    const url = new URL(outboundUrl);
+    const params = new URLSearchParams();
+
+    params.set("district_slug", district);
+    params.set("facility_id", facility.facility_id || "");
+    params.set("facility_name", facility.facility || facility.name || facility.facility_name || "");
+    params.set("outbound_url", outboundUrl);
+    params.set("utm_content", url.searchParams.get("utm_content") || "");
+    params.set("page_url", window.location.href);
+    params.set("device_type", getDeviceType());
+    params.set("user_agent", navigator.userAgent || "");
+
+    const logUrl = `${CLICK_LOGGER_URL}?${params.toString()}`;
+
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(logUrl);
+    } else {
+      fetch(logUrl, {
+        method: "GET",
+        mode: "no-cors",
+        keepalive: true
+      }).catch(() => {});
+    }
+  } catch (error) {
+    // Do not block the customer from continuing to Recreation.gov.
+  }
+}
+
 let activeDateIndex = null;
 let showAvailableOnly = false;
 let filterElectric = false;
@@ -303,7 +368,9 @@ function renderMasterTable(data) {
             href="${buildBookingUrlWithTracking(facility)}"
             target="_blank"
             rel="noopener noreferrer"
-            onclick="event.stopPropagation();"
+            data-facility-id="${escapeAttribute(facility.facility_id)}"
+            data-facility-name="${escapeAttribute(facility.name)}"
+            onclick="event.stopPropagation(); sendClickLogFromLink(this);"
           >
             Open on Recreation.gov
           </a>
