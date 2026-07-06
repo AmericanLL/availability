@@ -59,8 +59,12 @@ function sendClickLog(facility, outboundUrl) {
     params.set("district_slug", district);
     params.set("facility_id", facility.facility_id || "");
     params.set("facility_name", facility.facility || facility.name || facility.facility_name || "");
+    const facilitySlug = slugify(
+      facility.facility || facility.name || facility.facility_name || facility.facility_id
+    );
+
     params.set("outbound_url", outboundUrl);
-    params.set("utm_content", url.searchParams.get("utm_content") || "");
+    params.set("utm_content", `${slugify(district)}__${facilitySlug}`);
     params.set("page_url", window.location.href);
     params.set("device_type", getDeviceType());
     params.set("user_agent", navigator.userAgent || "");
@@ -98,23 +102,9 @@ function slugify(value) {
 }
 
 function buildBookingUrlWithTracking(facility) {
-  const baseUrl = facility.booking_url || `https://www.recreation.gov/camping/campgrounds/${facility.facility_id}`;
-
-  try {
-    const url = new URL(baseUrl);
-    const facilitySlug = slugify(
-      facility.facility || facility.name || facility.facility_name || facility.facility_id
-    );
-
-    url.searchParams.set("utm_source", "americanll");
-    url.searchParams.set("utm_medium", "availability_explorer");
-    url.searchParams.set("utm_campaign", "public_availability");
-    url.searchParams.set("utm_content", `${slugify(district)}__${facilitySlug}`);
-
-    return url.toString();
-  } catch (error) {
-    return baseUrl;
-  }
+  // Keep the actual customer-facing Recreation.gov link clean.
+  // Click tracking is handled separately by sendClickLogFromLink().
+  return facility.booking_url || `https://www.recreation.gov/camping/campgrounds/${facility.facility_id}`;
 }
 
 function dateParts(label) {
