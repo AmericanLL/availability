@@ -13,8 +13,25 @@ window.addEventListener("error", function(event) {
 const app = document.getElementById("availability-app");
 
 const params = new URLSearchParams(window.location.search);
-const district = params.get("district") || "or-siuslaw-central-coast";
+
+const filterState = params.get("state") || "";
+const filterPermit = params.get("permit") || "";
+const filterDistrict = params.get("district") || "";
+const filterGeography = params.get("geography") || "";
+const filterFacility = params.get("facility") || "";
+const filterFacilityId = params.get("facility_id") || "";
+
+const hasFilterParams = Boolean(
+  filterState ||
+  filterPermit ||
+  filterGeography ||
+  filterFacility ||
+  filterFacilityId
+);
+
+const district = filterDistrict || "or-siuslaw-central-coast";
 const DATA_URL = `data/districts/${district}.json`;
+const INDEX_URL = "data/index.json";
 
 const CLICK_LOGGER_URL = "https://script.google.com/macros/s/AKfycbx46RmBF6VTtcN_StL7Ql6lOHLaRznQUmmJibDUzxrivPemPtM1eSo-d2_R9VfXZ_6j/exec";
 
@@ -99,6 +116,141 @@ function slugify(value) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
+}
+
+
+function normalizeFilterValue(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function filterMatches(actual, expected) {
+  const expectedValue = normalizeFilterValue(expected);
+  if (!expectedValue) return true;
+  return normalizeFilterValue(actual) === expectedValue;
+}
+
+function facilityIndexRowMatches(row) {
+  return (
+    filterMatches(row.state, filterState) &&
+    filterMatches(row.permit, filterPermit) &&
+    filterMatches(row.district, filterDistrict) &&
+    filterMatches(row.geography, filterGeography) &&
+    filterMatches(row.facility, filterFacility) &&
+    filterMatches(row.facility_id, filterFacilityId)
+  );
+}
+
+function facilityDataMatches(facility) {
+  return (
+    filterMatches(facility.state, filterState) &&
+    filterMatches(facility.permit, filterPermit) &&
+    filterMatches(facility.district, filterDistrict) &&
+    filterMatches(facility.geography, filterGeography) &&
+    filterMatches(facility.name, filterFacility) &&
+    filterMatches(facility.facility_id, filterFacilityId)
+  );
+}
+
+function displayTitleFromFilters(fallbackTitle) {
+  const parts = [];
+
+  if (filterGeography) {
+    parts.push(filterGeography);
+  } else if (filterDistrict) {
+    parts.push(filterDistrict);
+  } else if (filterPermit) {
+    parts.push(filterPermit);
+  } else if (filterState) {
+    parts.push(filterState);
+  }
+
+  if (filterFacility) {
+    parts.push(filterFacility);
+  }
+
+  if (filterFacilityId) {
+    parts.push(`Facility ${filterFacilityId}`);
+  }
+
+  if (!parts.length) {
+    return fallbackTitle;
+  }
+
+  return `${parts.join(" - ")} Availability`;
+}
+
+function mergeFilteredDistrictData(districtPayloads) {
+  if (!districtPayloads.length) {
+    throw new Error("No matching district data files were found.");
+  }
+
+  const base = districtPayloads[0];
+  const facilities = [];
+
+  districtPayloads.forEach((payload) => {
+    (payload.facilities || []).forEach((facility) => {
+      if (facilityDataMatches(facility)) {
+        facilities.push(facility);
+      }
+    });
+  });
+
+  if (!facilities.length) {
+    throw new Error("No matching facilities were found for these filters.");
+  }
+
+  return {
+    ...base,
+    district_name: displayTitleFromFilters(base.district_name),
+    facilities,
+  };
+}
+
+function loadDistrictSlugMode() {
+  return fetch(DATA_URL).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Could not load ${DATA_URL}`);
+    }
+    return response.json();
+  });
+}
+
+function loadFilterMode() {
+  return fetch(INDEX_URL)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Could not load ${INDEX_URL}`);
+      }
+      return response.json();
+    })
+    .then((indexData) => {
+      const matches = (indexData.facilities || []).filter(facilityIndexRowMatches);
+      const districtSlugs = [...new Set(matches.map((row) => row.district_slug).filter(Boolean))];
+
+      if (!districtSlugs.length) {
+        throw new Error("No matching facilities were found in the availability index.");
+      }
+
+      return Promise.all(
+        districtSlugs.map((slug) =>
+          fetch(`data/districts/${slug}.json`).then((response) => {
+            if (!response.ok) {
+              throw new Error(`Could not load data/districts/${slug}.json`);
+            }
+            return response.json();
+          })
+        )
+      );
+    })
+    .then(mergeFilteredDistrictData);
+}
+
+function loadAvailabilityData() {
+  if (hasFilterParams) {
+    return loadFilterMode();
+  }
+
+  return loadDistrictSlugMode();
 }
 
 function buildBookingUrlWithTracking(facility) {
@@ -572,13 +724,7 @@ function applyDateHighlight() {
   });
 }
 
-fetch(DATA_URL)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`Could not load ${DATA_URL}`);
-    }
-    return response.json();
-  })
+loadAvailabilityData()
   .then((data) => {
     window.availabilityData = data;
     app.innerHTML = `
@@ -590,7 +736,7 @@ fetch(DATA_URL)
   .catch((error) => {
     app.innerHTML = `
       <h1>Availability data could not be loaded</h1>
-      <p>We could not load availability data for <strong>${district}</strong>.</p>
+      <p>We could not load availability data for the selected filters.</p>
       <p class="updated">${error.message}</p>
     `;
   });
