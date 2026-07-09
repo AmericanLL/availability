@@ -1,4 +1,3 @@
-
 window.addEventListener("error", function(event) {
   const app = document.getElementById("availability-app");
   if (app) {
@@ -49,6 +48,20 @@ function getDeviceType() {
   return "desktop";
 }
 
+function getVisitorId() {
+  const key = "all_availability_visitor_id";
+  let visitorId = localStorage.getItem(key);
+
+  if (!visitorId) {
+    visitorId = crypto.randomUUID();
+    localStorage.setItem(key, visitorId);
+  }
+
+  return visitorId;
+}
+
+const availabilitySessionId = crypto.randomUUID();
+
 function escapeAttribute(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -59,47 +72,65 @@ function escapeAttribute(value) {
 
 function sendClickLogFromLink(link) {
   const facility = {
+    state: link.dataset.state || "",
+    permit: link.dataset.permit || "",
+    district: link.dataset.district || "",
     facility_id: link.dataset.facilityId || "",
-    name: link.dataset.facilityName || ""
+    name: link.dataset.facilityName || "",
+    booking_url: link.href || ""
   };
 
   sendClickLog(facility, link.href);
 }
 
 function sendClickLog(facility, outboundUrl) {
-  if (!CLICK_LOGGER_URL) return;
-
-  try {
-    const url = new URL(outboundUrl);
-    const params = new URLSearchParams();
-
-    params.set("district_slug", district);
-    params.set("facility_id", facility.facility_id || "");
-    params.set("facility_name", facility.facility || facility.name || facility.facility_name || "");
-    const facilitySlug = slugify(
-      facility.facility || facility.name || facility.facility_name || facility.facility_id
-    );
-
-    params.set("outbound_url", outboundUrl);
-    params.set("utm_content", `${slugify(district)}__${facilitySlug}`);
-    params.set("page_url", window.location.href);
-    params.set("device_type", getDeviceType());
-    params.set("user_agent", navigator.userAgent || "");
-
-    const logUrl = `${CLICK_LOGGER_URL}?${params.toString()}`;
-
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(logUrl);
-    } else {
-      fetch(logUrl, {
-        method: "GET",
-        mode: "no-cors",
-        keepalive: true
-      }).catch(() => {});
-    }
-  } catch (error) {
-    // Do not block the customer from continuing to Recreation.gov.
+  if (!CLICK_LOGGER_URL || !facility) {
+    return;
   }
+
+  const params = new URLSearchParams();
+
+  const facilityName =
+    facility.public_facility_name ||
+    facility.facility ||
+    facility.name ||
+    facility.facility_name ||
+    "";
+
+  const facilityId = facility.facility_id || "";
+
+  params.set("state", facility.state || "");
+  params.set("permit", facility.permit || "");
+  params.set("district", facility.district || "");
+  params.set("facility_id", facilityId);
+  params.set("facility_name", facilityName);
+  params.set("outbound_url", outboundUrl || facility.outbound_url || facility.booking_url || "");
+  params.set("page_url", window.location.href);
+
+  params.set("visitor_id", getVisitorId());
+  params.set("session_id", availabilitySessionId);
+  params.set("click_id", crypto.randomUUID());
+  params.set("referrer", document.referrer || "");
+  params.set("screen_width", String(window.screen.width || ""));
+  params.set("screen_height", String(window.screen.height || ""));
+  params.set("language", navigator.language || "");
+  params.set("timezone", Intl.DateTimeFormat().resolvedOptions().timeZone || "");
+
+  params.set("filter_state", filterState || "");
+  params.set("filter_permit", filterPermit || "");
+  params.set("filter_district", filterDistrict || "");
+  params.set("filter_facility_id", filterFacilityId || "");
+
+  params.set("source_page", "public_availability");
+  params.set("event_type", "recreation_gov_click");
+  params.set("device_type", getDeviceType());
+  params.set("user_agent", navigator.userAgent || "");
+
+  fetch(`${CLICK_LOGGER_URL}?${params.toString()}`, {
+    method: "GET",
+    mode: "no-cors",
+    keepalive: true
+  });
 }
 
 let activeDateIndex = null;
@@ -117,7 +148,6 @@ function slugify(value) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 }
-
 
 function normalizeFilterValue(value) {
   return String(value || "").trim().toLowerCase();
@@ -254,8 +284,6 @@ function loadAvailabilityData() {
 }
 
 function buildBookingUrlWithTracking(facility) {
-  // Keep the actual customer-facing Recreation.gov link clean.
-  // Click tracking is handled separately by sendClickLogFromLink().
   return facility.booking_url || `https://www.recreation.gov/camping/campgrounds/${facility.facility_id}`;
 }
 
@@ -510,6 +538,9 @@ function renderMasterTable(data) {
             href="${buildBookingUrlWithTracking(facility)}"
             target="_blank"
             rel="noopener noreferrer"
+            data-state="${escapeAttribute(facility.state)}"
+            data-permit="${escapeAttribute(facility.permit)}"
+            data-district="${escapeAttribute(facility.district)}"
             data-facility-id="${escapeAttribute(facility.facility_id)}"
             data-facility-name="${escapeAttribute(facility.name)}"
             onclick="event.stopPropagation(); sendClickLogFromLink(this);"
