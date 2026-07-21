@@ -48,19 +48,42 @@ function getDeviceType() {
   return "desktop";
 }
 
+function generateUniqueId() {
+  if (
+    window.isSecureContext &&
+    window.crypto &&
+    typeof window.crypto.randomUUID === "function"
+  ) {
+    try {
+      return window.crypto.randomUUID();
+    } catch (error) {
+      console.warn(
+        "crypto.randomUUID() failed; using fallback ID.",
+        error
+      );
+    }
+  }
+
+  return [
+    Date.now().toString(36),
+    Math.random().toString(36).slice(2, 10),
+    Math.random().toString(36).slice(2, 10)
+  ].join("-");
+}
+
 function getVisitorId() {
   const key = "all_availability_visitor_id";
   let visitorId = localStorage.getItem(key);
 
   if (!visitorId) {
-    visitorId = crypto.randomUUID();
+    visitorId = generateUniqueId();
     localStorage.setItem(key, visitorId);
   }
 
   return visitorId;
 }
 
-const availabilitySessionId = crypto.randomUUID();
+const availabilitySessionId = generateUniqueId();
 
 function escapeAttribute(value) {
   return String(value ?? "")
@@ -109,7 +132,7 @@ function sendClickLog(facility, outboundUrl) {
 
   params.set("visitor_id", getVisitorId());
   params.set("session_id", availabilitySessionId);
-  params.set("click_id", crypto.randomUUID());
+  params.set("click_id", generateUniqueId());
   params.set("referrer", document.referrer || "");
   params.set("screen_width", String(window.screen.width || ""));
   params.set("screen_height", String(window.screen.height || ""));
