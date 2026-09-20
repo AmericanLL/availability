@@ -3,9 +3,8 @@
   "state": "UT",
   "permit": "Dixie",
   "district": "Escalante",
-  "last_updated": "2026-09-19T09:18:37",
+  "last_updated": "2026-09-20T09:24:35",
   "dates": [
-    "Sep 19",
     "Sep 20",
     "Sep 21",
     "Sep 22",
@@ -19,7 +18,6 @@
     "Sep 30"
   ],
   "days_of_week": [
-    "Sat",
     "Sun",
     "Mon",
     "Tue",
@@ -42,15 +40,6 @@
       "name": "Pine Lake",
       "booking_url": "https://www.recreation.gov/camping/campgrounds/231915",
       "calendar": [
-        {
-          "date": "Sep 19",
-          "available": 0,
-          "reserved": 7,
-          "first_come": 25,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
         {
           "date": "Sep 20",
           "available": 0,
@@ -100,17 +89,17 @@
           "date": "Sep 25",
           "available": 0,
           "reserved": 9,
-          "first_come": 12,
-          "not_reservable": 11,
+          "first_come": 23,
+          "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
         {
           "date": "Sep 26",
-          "available": 11,
-          "reserved": 9,
+          "available": 0,
+          "reserved": 10,
           "first_come": 12,
-          "not_reservable": 0,
+          "not_reservable": 10,
           "closed": 0,
           "unavailable": 0
         },
@@ -251,12 +240,6 @@
               "label": "Available",
               "group": "available",
               "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             }
           ]
         },
@@ -359,12 +342,6 @@
               "label": "Available",
               "group": "available",
               "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             }
           ]
         },
@@ -403,9 +380,9 @@
           },
           "days": [
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -467,12 +444,6 @@
               "label": "Available",
               "group": "available",
               "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             }
           ]
         },
@@ -510,12 +481,6 @@
             "driveway_length": null
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
@@ -683,12 +648,6 @@
               "label": "First Come / First Served",
               "group": "first_come",
               "is_available": false
-            },
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
             }
           ]
         },
@@ -726,12 +685,6 @@
             "driveway_length": null
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
@@ -899,12 +852,6 @@
               "label": "First Come / First Served",
               "group": "first_come",
               "is_available": false
-            },
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
             }
           ]
         },
@@ -942,12 +889,6 @@
             "driveway_length": 30
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
@@ -1115,12 +1056,6 @@
               "label": "First Come / First Served",
               "group": "first_come",
               "is_available": false
-            },
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
             }
           ]
         },
@@ -1158,12 +1093,6 @@
             "driveway_length": null
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
@@ -1331,12 +1260,6 @@
               "label": "First Come / First Served",
               "group": "first_come",
               "is_available": false
-            },
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
             }
           ]
         },
@@ -1374,12 +1297,6 @@
             "driveway_length": 60
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
@@ -1495,21 +1412,21 @@
               "is_available": false
             },
             {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
               "code": "FF",
               "label": "First Come / First Served",
               "group": "first_come",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
               "is_available": false
             },
             {
@@ -1523,12 +1440,6 @@
               "label": "Not Reservable",
               "group": "not_reservable",
               "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             },
             {
               "code": "R",
@@ -1597,9 +1508,9 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -1631,12 +1542,6 @@
               "label": "Not Reservable",
               "group": "not_reservable",
               "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             },
             {
               "code": "A",
@@ -1698,12 +1603,6 @@
             "driveway_length": 70
           },
           "days": [
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
             {
               "code": "R",
               "label": "Reserved",
@@ -1831,12 +1730,6 @@
               "is_available": false
             },
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -1914,12 +1807,6 @@
             "driveway_length": 70
           },
           "days": [
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
             {
               "code": "R",
               "label": "Reserved",
@@ -2087,12 +1974,6 @@
               "label": "Available",
               "group": "available",
               "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             }
           ]
         },
@@ -2130,12 +2011,6 @@
             "driveway_length": 80
           },
           "days": [
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
@@ -2239,12 +2114,6 @@
           },
           "days": [
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -2347,12 +2216,6 @@
           },
           "days": [
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -2383,16 +2246,16 @@
               "is_available": false
             },
             {
-              "code": "NR",
-              "label": "Not Reservable",
-              "group": "not_reservable",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "A",
@@ -2473,9 +2336,9 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -2495,12 +2358,6 @@
               "label": "Not Reservable",
               "group": "not_reservable",
               "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             },
             {
               "code": "A",
@@ -2562,12 +2419,6 @@
             "driveway_length": 60
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
@@ -2735,12 +2586,6 @@
               "label": "First Come / First Served",
               "group": "first_come",
               "is_available": false
-            },
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
             }
           ]
         },
@@ -2797,12 +2642,6 @@
               "is_available": false
             },
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -2821,10 +2660,10 @@
               "is_available": false
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "NR",
+              "label": "Not Reservable",
+              "group": "not_reservable",
+              "is_available": false
             },
             {
               "code": "A",
@@ -2886,12 +2725,6 @@
             "driveway_length": null
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "R",
               "label": "Reserved",
@@ -2995,12 +2828,6 @@
           },
           "days": [
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "FF",
               "label": "First Come / First Served",
               "group": "first_come",
@@ -3028,6 +2855,12 @@
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -3035,12 +2868,6 @@
               "label": "Not Reservable",
               "group": "not_reservable",
               "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             },
             {
               "code": "A",
@@ -3102,12 +2929,6 @@
             "driveway_length": null
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
@@ -3275,12 +3096,6 @@
               "label": "Available",
               "group": "available",
               "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
             }
           ]
         },
@@ -3318,12 +3133,6 @@
             "driveway_length": null
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
@@ -3427,12 +3236,6 @@
           },
           "days": [
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -3463,9 +3266,9 @@
               "is_available": false
             },
             {
-              "code": "NR",
-              "label": "Not Reservable",
-              "group": "not_reservable",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -3534,12 +3337,6 @@
             "driveway_length": null
           },
           "days": [
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
             {
               "code": "FF",
               "label": "First Come / First Served",
