@@ -3,9 +3,8 @@
   "state": "OR",
   "permit": "Willamette",
   "district": "Middle Fork",
-  "last_updated": "2026-10-23T09:16:14",
+  "last_updated": "2026-10-24T09:15:55",
   "dates": [
-    "Oct 23",
     "Oct 24",
     "Oct 25",
     "Oct 26",
@@ -64,10 +63,10 @@
     "Dec 18",
     "Dec 19",
     "Dec 20",
-    "Dec 21"
+    "Dec 21",
+    "Dec 22"
   ],
   "days_of_week": [
-    "Fri",
     "Sat",
     "Sun",
     "Mon",
@@ -126,7 +125,8 @@
     "Fri",
     "Sat",
     "Sun",
-    "Mon"
+    "Mon",
+    "Tue"
   ],
   "facilities": [
     {
@@ -138,15 +138,6 @@
       "name": "Big Pool",
       "booking_url": "https://www.recreation.gov/camping/campgrounds/10165155",
       "calendar": [
-        {
-          "date": "Oct 23",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 1,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
         {
           "date": "Oct 24",
           "available": 0,
@@ -196,8 +187,8 @@
           "date": "Oct 29",
           "available": 0,
           "reserved": 0,
-          "first_come": 0,
-          "not_reservable": 1,
+          "first_come": 1,
+          "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
@@ -671,6 +662,15 @@
         },
         {
           "date": "Dec 21",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 1,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Dec 22",
           "available": 0,
           "reserved": 0,
           "first_come": 0,
@@ -1088,15 +1088,6 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/234214",
       "calendar": [
         {
-          "date": "Oct 23",
-          "available": 0,
-          "reserved": 2,
-          "first_come": 17,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
           "date": "Oct 24",
           "available": 0,
           "reserved": 0,
@@ -1125,17 +1116,17 @@
         },
         {
           "date": "Oct 27",
-          "available": 19,
-          "reserved": 0,
-          "first_come": 0,
+          "available": 0,
+          "reserved": 1,
+          "first_come": 18,
           "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
         {
           "date": "Oct 28",
-          "available": 19,
-          "reserved": 0,
+          "available": 18,
+          "reserved": 1,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -1152,8 +1143,8 @@
         },
         {
           "date": "Oct 30",
-          "available": 18,
-          "reserved": 1,
+          "available": 19,
+          "reserved": 0,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -1161,8 +1152,8 @@
         },
         {
           "date": "Oct 31",
-          "available": 17,
-          "reserved": 2,
+          "available": 19,
+          "reserved": 0,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -1170,8 +1161,8 @@
         },
         {
           "date": "Nov 1",
-          "available": 18,
-          "reserved": 1,
+          "available": 19,
+          "reserved": 0,
           "first_come": 0,
           "not_reservable": 0,
           "closed": 0,
@@ -1620,6 +1611,15 @@
         },
         {
           "date": "Dec 21",
+          "available": 19,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Dec 22",
           "available": 19,
           "reserved": 0,
           "first_come": 0,
@@ -2852,12 +2852,6 @@
           },
           "days": [
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "FF",
               "label": "First Come / First Served",
               "group": "first_come",
@@ -2876,34 +2870,40 @@
               "is_available": false
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "A",
@@ -3686,96 +3686,6 @@
               "is_available": true
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -3822,6 +3732,96 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "A",
@@ -4454,16 +4454,16 @@
               "is_available": false
             },
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
               "is_available": false
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "A",
@@ -5624,9 +5624,9 @@
           },
           "days": [
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -9165,15 +9165,6 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/10165185",
       "calendar": [
         {
-          "date": "Oct 23",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 16,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
           "date": "Oct 24",
           "available": 0,
           "reserved": 0,
@@ -9202,9 +9193,9 @@
         },
         {
           "date": "Oct 27",
-          "available": 9,
+          "available": 0,
           "reserved": 0,
-          "first_come": 7,
+          "first_come": 16,
           "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
@@ -9697,6 +9688,15 @@
         },
         {
           "date": "Dec 21",
+          "available": 9,
+          "reserved": 0,
+          "first_come": 7,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Dec 22",
           "available": 9,
           "reserved": 0,
           "first_come": 7,
@@ -16054,15 +16054,6 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/233820",
       "calendar": [
         {
-          "date": "Oct 23",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 1,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
           "date": "Oct 24",
           "available": 0,
           "reserved": 0,
@@ -16111,8 +16102,8 @@
           "date": "Oct 29",
           "available": 0,
           "reserved": 0,
-          "first_come": 0,
-          "not_reservable": 1,
+          "first_come": 1,
+          "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
@@ -16586,6 +16577,15 @@
         },
         {
           "date": "Dec 21",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 1,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Dec 22",
           "available": 0,
           "reserved": 0,
           "first_come": 0,
@@ -17003,15 +17003,6 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/10165305",
       "calendar": [
         {
-          "date": "Oct 23",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 1,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
           "date": "Oct 24",
           "available": 0,
           "reserved": 0,
@@ -17541,6 +17532,15 @@
           "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
+        },
+        {
+          "date": "Dec 22",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
         }
       ],
       "sites": [
@@ -17621,9 +17621,9 @@
               "is_available": false
             },
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
+              "code": "",
+              "label": "",
+              "group": "missing",
               "is_available": false
             },
             {
@@ -17952,15 +17952,6 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/10165611",
       "calendar": [
         {
-          "date": "Oct 23",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 1,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
           "date": "Oct 24",
           "available": 0,
           "reserved": 0,
@@ -18009,8 +18000,8 @@
           "date": "Oct 29",
           "available": 0,
           "reserved": 0,
-          "first_come": 0,
-          "not_reservable": 1,
+          "first_come": 1,
+          "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
@@ -18490,6 +18481,15 @@
           "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
+        },
+        {
+          "date": "Dec 22",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
         }
       ],
       "sites": [
@@ -18576,9 +18576,9 @@
               "is_available": false
             },
             {
-              "code": "NR",
-              "label": "Not Reservable",
-              "group": "not_reservable",
+              "code": "",
+              "label": "",
+              "group": "missing",
               "is_available": false
             },
             {
@@ -18901,15 +18901,6 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/234219",
       "calendar": [
         {
-          "date": "Oct 23",
-          "available": 0,
-          "reserved": 2,
-          "first_come": 16,
-          "not_reservable": 0,
-          "closed": 3,
-          "unavailable": 0
-        },
-        {
           "date": "Oct 24",
           "available": 0,
           "reserved": 1,
@@ -18938,9 +18929,9 @@
         },
         {
           "date": "Oct 27",
-          "available": 16,
+          "available": 0,
           "reserved": 0,
-          "first_come": 2,
+          "first_come": 18,
           "not_reservable": 0,
           "closed": 3,
           "unavailable": 0
@@ -19439,6 +19430,15 @@
           "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
+        },
+        {
+          "date": "Dec 22",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
         }
       ],
       "sites": [
@@ -19519,9 +19519,9 @@
               "is_available": false
             },
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
+              "code": "",
+              "label": "",
+              "group": "missing",
               "is_available": false
             },
             {
@@ -19915,9 +19915,9 @@
               "is_available": false
             },
             {
-              "code": "C",
-              "label": "Closed",
-              "group": "closed",
+              "code": "",
+              "label": "",
+              "group": "missing",
               "is_available": false
             },
             {
@@ -20311,9 +20311,9 @@
               "is_available": false
             },
             {
-              "code": "C",
-              "label": "Closed",
-              "group": "closed",
+              "code": "",
+              "label": "",
+              "group": "missing",
               "is_available": false
             },
             {
@@ -20707,9 +20707,9 @@
               "is_available": false
             },
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
+              "code": "",
+              "label": "",
+              "group": "missing",
               "is_available": false
             },
             {
@@ -21103,9 +21103,9 @@
               "is_available": false
             },
             {
-              "code": "C",
-              "label": "Closed",
-              "group": "closed",
+              "code": "",
+              "label": "",
+              "group": "missing",
               "is_available": false
             },
             {
@@ -21499,10 +21499,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -21895,10 +21895,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -22291,10 +22291,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -22687,10 +22687,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -23083,10 +23083,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -23479,10 +23479,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -23875,10 +23875,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -24271,10 +24271,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -24661,15 +24661,15 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "",
+              "label": "",
+              "group": "missing",
               "is_available": false
             },
             {
@@ -25063,10 +25063,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -25459,10 +25459,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -25855,10 +25855,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -26251,10 +26251,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -26617,9 +26617,9 @@
               "is_available": false
             },
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
               "is_available": false
             },
             {
@@ -26647,10 +26647,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -27043,10 +27043,10 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
@@ -27397,12 +27397,6 @@
           },
           "days": [
             {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
               "code": "FF",
               "label": "First Come / First Served",
               "group": "first_come",
@@ -27421,10 +27415,10 @@
               "is_available": false
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
+              "is_available": false
             },
             {
               "code": "A",
@@ -27443,6 +27437,12 @@
               "label": "Available",
               "group": "available",
               "is_available": true
+            },
+            {
+              "code": "",
+              "label": "",
+              "group": "missing",
+              "is_available": false
             },
             {
               "code": "",
