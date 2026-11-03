@@ -3,7 +3,7 @@
   "state": "CO",
   "permit": "White River",
   "district": "Blanco",
-  "last_updated": "2026-11-02T10:02:23",
+  "last_updated": "2026-11-03T10:02:53",
   "dates": [
     "Nov 3",
     "Nov 4",
@@ -63,7 +63,8 @@
     "Dec 28",
     "Dec 29",
     "Dec 30",
-    "Dec 31"
+    "Dec 31",
+    "Jan 1"
   ],
   "days_of_week": [
     "Tue",
@@ -124,7 +125,8 @@
     "Mon",
     "Tue",
     "Wed",
-    "Thu"
+    "Thu",
+    "Fri"
   ],
   "facilities": [
     {
@@ -185,8 +187,8 @@
           "date": "Nov 8",
           "available": 0,
           "reserved": 0,
-          "first_come": 0,
-          "not_reservable": 1,
+          "first_come": 1,
+          "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
@@ -666,6 +668,15 @@
           "not_reservable": 1,
           "closed": 0,
           "unavailable": 0
+        },
+        {
+          "date": "Jan 1",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 1,
+          "closed": 0,
+          "unavailable": 0
         }
       ],
       "sites": [
@@ -677,6 +688,12 @@
           "metadata_summary": "",
           "metadata": {},
           "days": [
+            {
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
+              "is_available": false
+            },
             {
               "code": "FF",
               "label": "First Come / First Served",
