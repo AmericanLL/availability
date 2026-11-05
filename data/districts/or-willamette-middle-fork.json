@@ -3,10 +3,8 @@
   "state": "OR",
   "permit": "Willamette",
   "district": "Middle Fork",
-  "last_updated": "2026-11-03T10:18:51",
+  "last_updated": "2026-11-05T10:16:53",
   "dates": [
-    "Nov 3",
-    "Nov 4",
     "Nov 5",
     "Nov 6",
     "Nov 7",
@@ -64,11 +62,11 @@
     "Dec 29",
     "Dec 30",
     "Dec 31",
-    "Jan 1"
+    "Jan 1",
+    "Jan 2",
+    "Jan 3"
   ],
   "days_of_week": [
-    "Tue",
-    "Wed",
     "Thu",
     "Fri",
     "Sat",
@@ -126,7 +124,9 @@
     "Tue",
     "Wed",
     "Thu",
-    "Fri"
+    "Fri",
+    "Sat",
+    "Sun"
   ],
   "facilities": [
     {
@@ -138,24 +138,6 @@
       "name": "Big Pool",
       "booking_url": "https://www.recreation.gov/camping/campgrounds/10165155",
       "calendar": [
-        {
-          "date": "Nov 3",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 1,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
-          "date": "Nov 4",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 1,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
         {
           "date": "Nov 5",
           "available": 0,
@@ -196,8 +178,8 @@
           "date": "Nov 9",
           "available": 0,
           "reserved": 0,
-          "first_come": 0,
-          "not_reservable": 1,
+          "first_come": 1,
+          "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
@@ -205,8 +187,8 @@
           "date": "Nov 10",
           "available": 0,
           "reserved": 0,
-          "first_come": 0,
-          "not_reservable": 1,
+          "first_come": 1,
+          "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
@@ -671,6 +653,24 @@
         },
         {
           "date": "Jan 1",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 1,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Jan 2",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 1,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Jan 3",
           "available": 0,
           "reserved": 0,
           "first_come": 0,
@@ -1088,24 +1088,6 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/234214",
       "calendar": [
         {
-          "date": "Nov 3",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 19,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
-          "date": "Nov 4",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 19,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
           "date": "Nov 5",
           "available": 0,
           "reserved": 0,
@@ -1125,18 +1107,18 @@
         },
         {
           "date": "Nov 7",
-          "available": 17,
+          "available": 0,
           "reserved": 2,
-          "first_come": 0,
+          "first_come": 17,
           "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
         {
           "date": "Nov 8",
-          "available": 19,
+          "available": 0,
           "reserved": 0,
-          "first_come": 0,
+          "first_come": 19,
           "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
@@ -1620,6 +1602,24 @@
         },
         {
           "date": "Jan 1",
+          "available": 19,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Jan 2",
+          "available": 19,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Jan 3",
           "available": 19,
           "reserved": 0,
           "first_come": 0,
@@ -3650,36 +3650,24 @@
               "is_available": false
             },
             {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
+            },
+            {
               "code": "FF",
               "label": "First Come / First Served",
               "group": "first_come",
               "is_available": false
             },
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "R",
-              "label": "Reserved",
-              "group": "reserved",
-              "is_available": false
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
               "code": "A",
               "label": "Available",
               "group": "available",
@@ -3840,6 +3828,18 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "A",
@@ -4442,18 +4442,6 @@
               "is_available": false
             },
             {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
-            {
-              "code": "FF",
-              "label": "First Come / First Served",
-              "group": "first_come",
-              "is_available": false
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -4464,6 +4452,18 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "FF",
+              "label": "First Come / First Served",
+              "group": "first_come",
+              "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "A",
@@ -4880,18 +4880,6 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -4902,6 +4890,18 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "A",
@@ -5276,18 +5276,6 @@
               "is_available": true
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
-            },
-            {
               "code": "R",
               "label": "Reserved",
               "group": "reserved",
@@ -5298,6 +5286,18 @@
               "label": "Reserved",
               "group": "reserved",
               "is_available": false
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
+            },
+            {
+              "code": "A",
+              "label": "Available",
+              "group": "available",
+              "is_available": true
             },
             {
               "code": "A",
@@ -9165,24 +9165,6 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/10165185",
       "calendar": [
         {
-          "date": "Nov 3",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 16,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
-          "date": "Nov 4",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 16,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
           "date": "Nov 5",
           "available": 0,
           "reserved": 0,
@@ -9202,18 +9184,18 @@
         },
         {
           "date": "Nov 7",
-          "available": 9,
+          "available": 0,
           "reserved": 0,
-          "first_come": 7,
+          "first_come": 16,
           "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
         {
           "date": "Nov 8",
-          "available": 9,
+          "available": 0,
           "reserved": 0,
-          "first_come": 7,
+          "first_come": 16,
           "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
@@ -9697,6 +9679,24 @@
         },
         {
           "date": "Jan 1",
+          "available": 9,
+          "reserved": 0,
+          "first_come": 7,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Jan 2",
+          "available": 9,
+          "reserved": 0,
+          "first_come": 7,
+          "not_reservable": 0,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Jan 3",
           "available": 9,
           "reserved": 0,
           "first_come": 7,
@@ -16054,24 +16054,6 @@
       "booking_url": "https://www.recreation.gov/camping/campgrounds/233820",
       "calendar": [
         {
-          "date": "Nov 3",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 1,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
-          "date": "Nov 4",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 1,
-          "not_reservable": 0,
-          "closed": 0,
-          "unavailable": 0
-        },
-        {
           "date": "Nov 5",
           "available": 0,
           "reserved": 0,
@@ -16111,8 +16093,8 @@
           "date": "Nov 9",
           "available": 0,
           "reserved": 0,
-          "first_come": 0,
-          "not_reservable": 1,
+          "first_come": 1,
+          "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
@@ -16120,8 +16102,8 @@
           "date": "Nov 10",
           "available": 0,
           "reserved": 0,
-          "first_come": 0,
-          "not_reservable": 1,
+          "first_come": 1,
+          "not_reservable": 0,
           "closed": 0,
           "unavailable": 0
         },
@@ -16586,6 +16568,24 @@
         },
         {
           "date": "Jan 1",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 1,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Jan 2",
+          "available": 0,
+          "reserved": 0,
+          "first_come": 0,
+          "not_reservable": 1,
+          "closed": 0,
+          "unavailable": 0
+        },
+        {
+          "date": "Jan 3",
           "available": 0,
           "reserved": 0,
           "first_come": 0,
