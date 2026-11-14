@@ -3,9 +3,8 @@
   "state": "UT",
   "permit": "Ashley",
   "district": "Lucerne",
-  "last_updated": "2026-11-13T10:18:18",
+  "last_updated": "2026-11-14T10:16:24",
   "dates": [
-    "Nov 13",
     "Nov 14",
     "Nov 15",
     "Nov 16",
@@ -64,10 +63,10 @@
     "Jan 8",
     "Jan 9",
     "Jan 10",
-    "Jan 11"
+    "Jan 11",
+    "Jan 12"
   ],
   "days_of_week": [
-    "Fri",
     "Sat",
     "Sun",
     "Mon",
@@ -126,7 +125,8 @@
     "Fri",
     "Sat",
     "Sun",
-    "Mon"
+    "Mon",
+    "Tue"
   ],
   "facilities": [
     {
@@ -138,15 +138,6 @@
       "name": "Lucerne",
       "booking_url": "https://www.recreation.gov/camping/campgrounds/231907",
       "calendar": [
-        {
-          "date": "Nov 13",
-          "available": 0,
-          "reserved": 0,
-          "first_come": 24,
-          "not_reservable": 0,
-          "closed": 96,
-          "unavailable": 0
-        },
         {
           "date": "Nov 14",
           "available": 0,
@@ -176,17 +167,17 @@
         },
         {
           "date": "Nov 17",
-          "available": 19,
+          "available": 0,
           "reserved": 0,
-          "first_come": 5,
+          "first_come": 24,
           "not_reservable": 0,
           "closed": 96,
           "unavailable": 0
         },
         {
           "date": "Nov 18",
-          "available": 19,
-          "reserved": 0,
+          "available": 18,
+          "reserved": 1,
           "first_come": 5,
           "not_reservable": 0,
           "closed": 96,
@@ -677,6 +668,15 @@
           "not_reservable": 0,
           "closed": 96,
           "unavailable": 0
+        },
+        {
+          "date": "Jan 12",
+          "available": 19,
+          "reserved": 0,
+          "first_come": 5,
+          "not_reservable": 0,
+          "closed": 96,
+          "unavailable": 0
         }
       ],
       "sites": [
@@ -739,10 +739,10 @@
               "is_available": false
             },
             {
-              "code": "A",
-              "label": "Available",
-              "group": "available",
-              "is_available": true
+              "code": "R",
+              "label": "Reserved",
+              "group": "reserved",
+              "is_available": false
             },
             {
               "code": "A",
